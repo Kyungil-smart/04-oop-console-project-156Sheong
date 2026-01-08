@@ -14,7 +14,9 @@ public static class SoundManager
     // 배경음을 재생하는 함수
     public static void RunningBGM()
     {
-        string mp3FilePath = "./Resources/BGM01StarclusterHorizon.mp3"; // (bin/Debug/net10.0) 속에 있는 폴더 속 재생할 음악
+        // 'bin/Debug/net10.0' 내부에 있는 경로 속 재생할 음악
+        // net10.0 폴더 앞의 경로로 가면 에러남
+        string mp3FilePath = "./Resources/BGM01StarclusterHorizon.mp3"; 
 
         // 파일 확인 여부 탐색
         // https://learn.microsoft.com/ko-kr/dotnet/api/system.io.file.exists?view=net-10.0
