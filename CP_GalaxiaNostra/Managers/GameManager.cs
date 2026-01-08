@@ -19,7 +19,8 @@ public class GameManager
         //게임 루틴 가동
         while(IsGameRunning)
         {
-            Console.ReadLine(); // 테스트용으로 게임 안 꺼지도록 입력 받기
+            SoundManager.ChangeBGM(int.Parse(Console.ReadLine())); // 배경음 테스트 용
+
         }
     }
 
@@ -40,7 +41,7 @@ public class GameManager
         _player = new Player();
 
         // 배경음 불러오기
-        SoundManager.RunningBGM();
+        SoundManager.RunningBGM(0);
 
         // 각종 씬 불러오기
 

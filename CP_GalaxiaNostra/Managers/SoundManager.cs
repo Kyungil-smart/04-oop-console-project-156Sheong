@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using WMPLib;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 // 게임의 음악을 관리할 매니저
 // 게임 전역에 사용되어 편하게 관리하기 위해 static 처리
@@ -9,31 +10,36 @@ public static class SoundManager
 {
     private static int _volumeBGM = 30;
     public static WindowsMediaPlayer mBGM = new WindowsMediaPlayer();
-
+    private static List<string> mp3FilePath = new List<string>();
 
     // 배경음을 재생하는 함수
-    public static void RunningBGM()
+    public static void RunningBGM(int numBGM)
     {
-        // 'bin/Debug/net10.0' 내부에 있는 경로 속 재생할 음악
-        // net10.0 폴더 앞의 경로로 가면 에러남
-        string mp3FilePath = "./Resources/BGM01StarclusterHorizon.mp3"; 
+        mp3FilePath.Add("./Resources/BGM01StarclusterHorizon.mp3");  // 'bin/Debug/net10.0' 내부에 있는 경로 속 재생할 음악
+        mp3FilePath.Add("./Resources/BGM02MaidenVoyage.mp3");    // net10.0 폴더 앞의 경로로 가면 에러남
+        mp3FilePath.Add("./Resources/BGM03SmoothStart.mp3");
+        mp3FilePath.Add("./Resources/BGM04ToDeepSpace.mp3");
 
         // 파일 확인 여부 탐색
         // https://learn.microsoft.com/ko-kr/dotnet/api/system.io.file.exists?view=net-10.0
-        if (!File.Exists(mp3FilePath))
+        if (!File.Exists(mp3FilePath[numBGM]))
         {
             // 파일이 없으면 콘솔 출력
-            Console.WriteLine($"BGM 파일 없음 : {mp3FilePath}");
+            Console.WriteLine($"BGM 파일 없음 : {mp3FilePath[numBGM]}");
             return;
         }
 
-        mBGM.URL = mp3FilePath;
+        mBGM.URL = mp3FilePath[numBGM];
 
         // 초기 볼륨 값 설정
         mBGM.settings.volume = _volumeBGM;
 
         // 자동 반복 모드 설정
+        // https://learn.microsoft.com/ko-kr/previous-versions/windows/desktop/wmp/wmplibiwmpsettings-iwmpsettings-setmode--vb-and-c
         mBGM.settings.setMode("loop", true);
+
+        // 배경음 재생 시작
+        mBGM.controls.play();
     }
 
     // 배경음 볼륨 값을 수정하는 함수
@@ -58,9 +64,11 @@ public static class SoundManager
     }
 
     // 배경음을 변경하는 함수
-    public static void ChangeBGM()
+    public static void ChangeBGM(int numBGM)
     {
-
+        mBGM.controls.stop();   
+        mBGM.URL = mp3FilePath[numBGM];
+        mBGM.controls.play();
     }
 }
 
