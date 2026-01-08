@@ -1,5 +1,4 @@
-﻿using CP_GalaxiaNostra.GameObjects;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -20,7 +19,7 @@ public class GameManager
         //게임 루틴 가동
         while(IsGameRunning)
         {
-
+            Console.ReadLine(); // 테스트용으로 게임 안 꺼지도록 입력 받기
         }
     }
 
@@ -39,6 +38,9 @@ public class GameManager
 
         // 플레이어 생성
         _player = new Player();
+
+        // 배경음 불러오기
+        SoundManager.RunningBGM();
 
         // 각종 씬 불러오기
 
