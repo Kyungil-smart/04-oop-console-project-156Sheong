@@ -15,10 +15,13 @@ public static class SoundManager
     // 배경음을 재생하는 함수
     public static void RunningBGM(int numBGM)
     {
+        // 추후에 각 음악을 객체화하고, 객체 속성으로 음악의 사용처를 넣은 다음, 특정 상황에서 특정 음악이 나오도록 변경할 예정
         mp3FilePath.Add("./Resources/BGM01StarclusterHorizon.mp3");  // 'bin/Debug/net10.0' 내부에 있는 경로 속 재생할 음악
         mp3FilePath.Add("./Resources/BGM02MaidenVoyage.mp3");    // net10.0 폴더 앞의 경로로 가면 에러남
         mp3FilePath.Add("./Resources/BGM03SmoothStart.mp3");
         mp3FilePath.Add("./Resources/BGM04ToDeepSpace.mp3");
+        mp3FilePath.Add("./Resources/BGM05StarclusterVoyager.mp3"); // 30초 가량의 짦은 음악이라 사용 주의 필요
+        mp3FilePath.Add("./Resources/BGM06VoyageIntoTheUnknown.mp3");
 
         // 파일 확인 여부 탐색
         // https://learn.microsoft.com/ko-kr/dotnet/api/system.io.file.exists?view=net-10.0
