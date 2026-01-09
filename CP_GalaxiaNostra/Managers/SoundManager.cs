@@ -6,6 +6,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 // 게임의 음악을 관리할 매니저
 // 게임 전역에 사용되어 편하게 관리하기 위해 static 처리
+// 현재는 배경음만 사용하는데, 효과음도 사용할 예정이라면 static 처리를 제거하고 BGM용 객체, SE용 객체를 따로 만들어야 할 수도 있음
 public static class SoundManager
 {
     private static int _volumeBGM = 30;
@@ -22,6 +23,13 @@ public static class SoundManager
         mp3FilePath.Add("./Resources/BGM04ToDeepSpace.mp3");
         mp3FilePath.Add("./Resources/BGM05StarclusterVoyager.mp3"); // 30초 가량의 짦은 음악이라 사용 주의 필요
         mp3FilePath.Add("./Resources/BGM06VoyageIntoTheUnknown.mp3");
+
+        // 재생 범위보다 큰 값 입력 받으면 콘솔 출력 후 리턴
+        if (numBGM >= mp3FilePath.Count)
+        {
+            Console.WriteLine($"BGM 파일 범위를 벗어남, 가능 번호 : 0 ~ {mp3FilePath.Count - 1}");
+            return;
+        }
 
         // 파일 확인 여부 탐색
         // https://learn.microsoft.com/ko-kr/dotnet/api/system.io.file.exists?view=net-10.0
@@ -69,6 +77,13 @@ public static class SoundManager
     // 배경음을 변경하는 함수
     public static void ChangeBGM(int numBGM)
     {
+        // 재생 범위보다 큰 값 입력 받으면 콘솔 출력 후 리턴
+        if (numBGM >= mp3FilePath.Count)
+        {
+            Console.WriteLine($"BGM 파일 범위를 벗어남, 가능 번호 : 0 ~ {mp3FilePath.Count - 1}");
+            return;
+        }
+
         mBGM.controls.stop();   
         mBGM.URL = mp3FilePath[numBGM];
         mBGM.controls.play();
