@@ -37,13 +37,22 @@ public class GameManager
 
         // 키 초기화 로직(씬 전환 시 입력치가 눌린 것을 초기화)
 
-        // 플레이어 생성
+        // 필드 맵에서 돌아다닐 플레이어 인스턴스 생성
         _player = new Player();
 
         // 배경음 불러오기
         SoundManager.RunningBGM(0);
 
         // 각종 씬 불러오기
+        SceneManager.AddScene("Title", new TitleScene());   // 타이틀 용 씬
+        SceneManager.AddScene("Main", new MainScene()); // 메인 메뉴 용 씬
+
+        SceneManager.AddScene("Field001", new FieldScene001()); // 필드 맵 용 씬 3종
+        SceneManager.AddScene("Field002", new FieldScene002());
+        SceneManager.AddScene("Field003", new FieldScene003());
+
+        SceneManager.AddScene("Battle001", new BattleScene001()); // 전투 맵 용 씬 1종
+
 
         // 시작은 인트로 씬으로 하도록
         // 인트로 씬에서 Timer or Delay 등 함수 사용 
