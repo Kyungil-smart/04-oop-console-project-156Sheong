@@ -19,7 +19,23 @@ public class GameManager
         //게임 루틴 가동
         while(IsGameRunning)
         {
+            // 랜더링
+            Console.Clear();    // 이전 이미지 제거
+            SceneManager.RenderScene();
+
+
+            // 키 입력 받기
             SoundManager.ChangeBGM(int.Parse(Console.ReadLine())); // 배경음 테스트 용
+
+
+
+            // 데이터 처리
+
+
+            SceneManager.UpdateScene(); // 씬 메니저에서 씬 업데이트 하기
+
+
+            
 
         }
     }
@@ -33,7 +49,7 @@ public class GameManager
         // 특수문자 사용 가능하도록 UTF-16 되도록 선언
         Console.OutputEncoding = Encoding.Unicode;
 
-        Console.WriteLine($"{IsGameRunning} ✳️");   // 게임이 잘 실행되는지 확인하기 위한 임시 콘솔
+        
 
         // 키 초기화 로직(씬 전환 시 입력치가 눌린 것을 초기화)
 

@@ -50,6 +50,7 @@ public static class SoundManager
         mBGM.settings.setMode("loop", true);
 
         // 배경음 재생 시작
+        // https://learn.microsoft.com/en-us/previous-versions/windows/desktop/wmp/controls-object
         mBGM.controls.play();
     }
 
@@ -84,6 +85,7 @@ public static class SoundManager
             return;
         }
 
+        // 이전 음악 재생 멈추고, 다음 음악 재생
         mBGM.controls.stop();   
         mBGM.URL = mp3FilePath[numBGM];
         mBGM.controls.play();

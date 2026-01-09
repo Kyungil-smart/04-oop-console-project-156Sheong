@@ -6,6 +6,11 @@ using static System.Net.Mime.MediaTypeNames;
 // 게임 씬을 관리해줄 매니저
 public static class SceneManager
 {
+    // Action 은 void 메서드를 참조(캡슐화)할 수 있는 내장 델리게이트(delegate) 타입
+    // 메서드 자체를 변수처럼 전달 or 이벤트 처리에 활용하여 코드의 유연성과 재사용성을 높이는 역할
+    // 외부에서 씬 전환 시점에 호출할 메서드를 등록할 수 있도록 델리게이트를 만듦
+    public static Action OnChangeScene;
+
     // 이전 씬과 현재 씬에 대한 변수
     public static SceneBase CurrentScene { get; private set; }
     private static SceneBase _prevScene;
@@ -20,6 +25,11 @@ public static class SceneManager
         if (_scenes.ContainsKey(keyWord)) return;
 
         _scenes.Add(keyWord, scene);
+    }
+
+    public static void ChangePrevScene()
+    {
+        ChangeScene(_prevScene);
     }
 
     // 씬을 바꾸는 함수 - 외부 접근용
@@ -39,6 +49,22 @@ public static class SceneManager
 
         CurrentScene?.Exit();   // 씬을 바꾸기 위해, 현재 씬이 있다면 Exit 함수 호출
         nextScene.Enter();  // 다음 씬을 바로 Enter 함수 호출
+
+        _prevScene = CurrentScene;
+        CurrentScene = nextScene;
+
+        OnChangeScene?.Invoke();    // 씬이 바뀌면 이 델리게이트도 호출됨
+    }
+
+
+    public static void UpdateScene()
+    {
+        CurrentScene?.Update(); // 현재 상태의 Update 호출
+    }
+
+    public static void RenderScene()
+    {
+        CurrentScene?.Render(); // 현재 상태의 Render 호출
     }
 }
 
