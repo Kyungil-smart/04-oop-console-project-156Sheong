@@ -13,11 +13,20 @@ public class TitleScene : SceneBase
 
     public override void Update()
     {
-        if(true)
+        /*
+        // 아무 키나 입력 받으면 메인 씬으로 넘어감
+        // https://learn.microsoft.com/ko-kr/dotnet/api/system.console?view=net-8.0
+        if (Console.KeyAvailable) SceneManager.ChangeScene("Main");
+        */
+
+        // 추후에 종류별 키 묶음을 하고, 아무 키나 입력받으면 넘어가도록 변경 예정
+        if (InputManager.GetKey(ConsoleKey.Z) || 
+            InputManager.GetKey(ConsoleKey.Spacebar) ||
+            InputManager.GetKey(ConsoleKey.Enter))
         {
             SceneManager.ChangeScene("Main");
         }
-        
+
     }
 
     public override void Render()

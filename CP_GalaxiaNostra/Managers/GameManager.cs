@@ -25,8 +25,9 @@ public class GameManager
 
 
             // 키 입력 받기
-            SoundManager.ChangeBGM(int.Parse(Console.ReadLine())); // 배경음 테스트 용
-
+            InputManager.GetUserInput();
+            // SoundManager.ChangeBGM(int.Parse(Console.ReadLine())); // 배경음 테스트 용
+            
 
 
             // 데이터 처리
@@ -49,9 +50,11 @@ public class GameManager
         // 특수문자 사용 가능하도록 UTF-16 되도록 선언
         Console.OutputEncoding = Encoding.Unicode;
 
-        
+
 
         // 키 초기화 로직(씬 전환 시 입력치가 눌린 것을 초기화)
+        SceneManager.OnChangeScene += InputManager.ResetKey;
+
 
         // 필드 맵에서 돌아다닐 플레이어 인스턴스 생성
         _player = new Player();
