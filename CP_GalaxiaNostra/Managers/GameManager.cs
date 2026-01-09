@@ -53,6 +53,7 @@ public class GameManager
 
         SceneManager.AddScene("Battle001", new BattleScene001()); // 전투 맵 용 씬 1종
 
+        SceneManager.ChangeScene("Title");
 
         // 시작은 인트로 씬으로 하도록
         // 인트로 씬에서 Timer or Delay 등 함수 사용 
