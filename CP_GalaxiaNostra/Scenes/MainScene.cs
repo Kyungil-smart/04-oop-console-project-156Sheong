@@ -25,7 +25,8 @@ public class MainScene : SceneBase
 
     public override void Enter()
     {
-        Console.WriteLine("메인 씬에 입장했습니다.");    // 기능 작동 확인용 콘솔 출력
+        _MainMenu.Reset();
+        // Console.WriteLine("메인 씬에 입장했습니다.");    // 기능 작동 확인용 콘솔 출력
     }
 
     public override void Update()
@@ -59,6 +60,7 @@ public class MainScene : SceneBase
     // 메인 씬 메뉴의 5개 버튼을 클릭 시 각각 발동하는 
     public void StartNewGame()
     {
+        // Console.WriteLine("게임 입장 클릭");
         SceneManager.ChangeScene("Field001");
     }
     public void LoadGame()

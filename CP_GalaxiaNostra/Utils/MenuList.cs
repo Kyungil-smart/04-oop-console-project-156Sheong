@@ -46,7 +46,11 @@ public class MenuList
         _outline = new Ractangle(width: _maxLength + 4, height: _menus.Count + 2);
     }
 
-
+    // 현재 인덱스 0으로 리셋
+    public void Reset()
+    {
+        _currentIndex = 0;
+    }
 
 
     // 메뉴리스트를 생성한 인스턴스에 추가하는 기능
@@ -69,6 +73,24 @@ public class MenuList
 
     public void RemoveMenu()
     {
+        // 해당 인덱스의 메뉴를 안전하게 제거
+        _menus.RemoveAt(_currentIndex);
+
+        int max = 0;
+
+        foreach ((string text, Action action) in _menus)
+        {
+            // int textWidth = text.GetTextWidth();
+            int textWidth = 2; // 문자의 칸수는 2칸으로 고정
+
+            if (max < textWidth) max = textWidth;
+        }
+
+        if (_maxLength != max) _maxLength = max;
+
+        _outline.Width = _maxLength + 8;
+        _outline.Height++;
+
 
     }
 
@@ -89,7 +111,15 @@ public class MenuList
     }
     public void SelectMenu()
     {
+        // 메뉴가 없으면 리턴 시키기
+        if (_menus.Count == 0) return;
 
+        // 메뉴의 내용물이 null 이 아니라면 할당된 함수 호출
+        _menus[_currentIndex].action?.Invoke();
+
+        if (_menus.Count == 0) Reset();   // 호출 후 메뉴 가 없으면 _currentIndex 0으로 리셋
+        else if (_currentIndex >= _menus.Count) // 현재 메뉴 내용물 인덱스가 실제 내용물 개수보다 크거나 같으면, 내용물 개수만큼 맞춰주기
+            _currentIndex = _menus.Count - 1;
     }
 
 
