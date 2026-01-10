@@ -6,7 +6,7 @@ using System.Text;
 public class Player : GameObject
 {
 
-    // public ObservableProperty<int> Fuel = new ObservableProperty<int>(10);
+    public ObservableProperty<int> Fuel = new ObservableProperty<int>(10);
 
 
     public Tile[,] Field { get; set; }
