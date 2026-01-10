@@ -63,7 +63,7 @@ public class MenuList
             _maxLength = textWidth;
         }
 
-        _outline.Width = _maxLength + 6;
+        _outline.Width = _maxLength + 8;
         _outline.Height++;
     }
 
@@ -82,8 +82,10 @@ public class MenuList
 
     public void SelectDown()
     {
+        //if (_currentIndex >= _menus.Count - 1) return;
         _currentIndex++;
-        if (_currentIndex > _menus.Count) _currentIndex = _menus.Count - 1;
+        // 현재 인덱스가 메뉴 개수 보다 크거나 같으면 메뉴 카운트 - 1 해서 범위 밖으로 벗어나지 않게 만들기
+        if (_currentIndex >= _menus.Count) _currentIndex = _menus.Count - 1;
     }
     public void SelectMenu()
     {
@@ -91,12 +93,30 @@ public class MenuList
     }
 
 
-    public void Render(int x, int y)
-
+    public void RenderLeft(int x, int y)
     {
         _outline.X = x;
         _outline.Y = y;
         _outline.Draw();
+
+        for (int i = 0; i < _menus.Count; i++)
+        {
+            y++;
+            Console.SetCursorPosition(x + 2, y);    // 문자가 2칸이라 2칸 띄우고 시작하도록 변경
+
+            // 커서나 공백 프린트
+            if (i == _currentIndex)
+            {
+                "->".Print(ConsoleColor.Yellow);
+                _menus[i].text.Print(ConsoleColor.Yellow);
+                continue;
+            }
+            else
+            {
+                Console.Write("   ");   // 공백이 1칸 더 커서 선택된 메뉴가 이동하는 느낌을 줌
+                _menus[i].text.Print();
+            }
+        }
 
     }
 }

@@ -16,11 +16,11 @@ public class MainScene : SceneBase
     public void Init()
     {
         _MainMenu = new MenuList();
-        _MainMenu.AddMenu("새 게임", StartNewGame);
-        _MainMenu.AddMenu("불러오기", LoadGame);
-        _MainMenu.AddMenu("옵션", ViewOption);
-        _MainMenu.AddMenu("크레딧", ViewCredits);
-        _MainMenu.AddMenu("게임 종료", QuitGame);
+        _MainMenu.AddMenu(" 새 게임  ", StartNewGame);
+        _MainMenu.AddMenu(" 불러오기 ", LoadGame);
+        _MainMenu.AddMenu(" 게임 옵션", ViewOption);
+        _MainMenu.AddMenu(" 크레딧   ", ViewCredits);
+        _MainMenu.AddMenu(" 게임 종료", QuitGame);
     }
 
     public override void Enter()
@@ -48,7 +48,7 @@ public class MainScene : SceneBase
     public override void Render()
     {
         Console.SetCursorPosition(5, 1);
-        _MainMenu.Render(5, 5);
+        _MainMenu.RenderLeft(5, 5);
     }
 
     public override void Exit()
