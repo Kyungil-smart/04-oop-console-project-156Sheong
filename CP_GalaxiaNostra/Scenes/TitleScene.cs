@@ -26,7 +26,7 @@ public class TitleScene : SceneBase
         {
             SceneManager.ChangeScene("Main");
         }
-
+        
     }
 
     public override void Render()

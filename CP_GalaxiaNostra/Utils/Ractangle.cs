@@ -18,5 +18,10 @@ public struct Ractangle
         Width = width;
         Height = height;
     }
+
+    public void Draw()
+    {
+
+    }
 }
 

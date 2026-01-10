@@ -67,6 +67,37 @@ public class MenuList
         _outline.Height++;
     }
 
+    public void RemoveMenu()
+    {
 
+    }
+
+    // 메뉴에서 위, 아래, 선택 기능
+    public void SelectUp()
+    {
+        _currentIndex--;
+        // 0 보다 작으면 0으로 만들어 범위 밖으로 벗어나지 않게 만들기
+        if(_currentIndex < 0) _currentIndex = 0;
+    }
+
+    public void SelectDown()
+    {
+        _currentIndex++;
+        if (_currentIndex > _menus.Count) _currentIndex = _menus.Count - 1;
+    }
+    public void SelectMenu()
+    {
+
+    }
+
+
+    public void Render(int x, int y)
+
+    {
+        _outline.X = x;
+        _outline.Y = y;
+        _outline.Draw();
+
+    }
 }
 

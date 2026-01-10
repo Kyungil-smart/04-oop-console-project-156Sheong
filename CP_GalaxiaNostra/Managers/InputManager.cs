@@ -30,6 +30,50 @@ public static class InputManager
         ConsoleKey.Escape
     };
 
+    /*
+    private static HashSet<ConsoleKey> moveKeys = new HashSet<ConsoleKey>
+    {
+        ConsoleKey.UpArrow,
+        ConsoleKey.DownArrow,
+        ConsoleKey.LeftArrow,
+        ConsoleKey.RightArrow,
+        ConsoleKey.W,
+        ConsoleKey.S,
+        ConsoleKey.A,
+        ConsoleKey.D
+    };
+
+    private static HashSet<ConsoleKey> selectKey = new HashSet<ConsoleKey>
+    {
+        ConsoleKey.Z,
+        ConsoleKey.Spacebar,
+        ConsoleKey.Enter
+    };
+
+    private static HashSet<ConsoleKey> cancelKey = new HashSet<ConsoleKey>
+    {
+        ConsoleKey.X,
+        ConsoleKey.Escape
+    };
+
+    
+    public static void GetKey(HashSet<ConsoleKey> inputKeySet)
+    {
+        if (moveKeys == inputKeySet)
+        {
+            return;
+        }
+        else if (selectKey == inputKeySet)
+        {
+            return;
+        }
+        else if (cancelKey == inputKeySet)
+        {
+            return;
+        }
+    }
+    */
+
     // 키 입력 받을 시 T / F 리턴 함수
     public static bool GetKey(ConsoleKey inputKey)
     {

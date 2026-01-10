@@ -30,12 +30,25 @@ public class MainScene : SceneBase
 
     public override void Update()
     {
-
+        // 메뉴에서 방향키 누르면 위 메뉴 이동 / 아래 메뉴 이동 / 메뉴 선택 이 가능하도록
+        if(InputManager.GetKey(ConsoleKey.UpArrow))
+        {
+            _MainMenu.SelectUp();
+        }
+        if (InputManager.GetKey(ConsoleKey.DownArrow))
+        {
+            _MainMenu.SelectDown();
+        }
+        if (InputManager.GetKey(ConsoleKey.Enter))
+        {
+            _MainMenu.SelectMenu();
+        }
     }
 
     public override void Render()
     {
-
+        Console.SetCursorPosition(5, 1);
+        _MainMenu.Render(5, 5);
     }
 
     public override void Exit()
@@ -43,10 +56,10 @@ public class MainScene : SceneBase
 
     }
 
-
+    // 메인 씬 메뉴의 5개 버튼을 클릭 시 각각 발동하는 
     public void StartNewGame()
     {
-
+        SceneManager.ChangeScene("Field001");
     }
     public void LoadGame()
     {
