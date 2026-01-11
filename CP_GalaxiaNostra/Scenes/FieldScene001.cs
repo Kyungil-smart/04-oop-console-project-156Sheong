@@ -5,9 +5,10 @@ using System.Text;
 // 첫번째 이동 필드 씬
 public class FieldScene001 : SceneBase
 {
-    private Tile[,] _field = new Tile[16, 16];
+    private Tile[,] _field = new Tile[12, 16];  // 마을 크기
     private Player _player;
 
+    // 씬에서 플레이어 소환하는 생성자 람다식
     public FieldScene001(Player player) => Init(player);
 
     public void Init(Player player)
@@ -24,26 +25,46 @@ public class FieldScene001 : SceneBase
         }
     }
 
+
     public override void Enter()
     {
         _player.Field = _field;
 
-        _player.Position = new Vector(3, 3);
-        _field[_player.Position.Y, _player.Position.X].OnTileObject = _player;
+        _player.MapPosition = new Vector(4, 4);    // 4.4 위치에서 생성 
+        _field[_player.MapPosition.Y, _player.MapPosition.X].OnTileObject = _player;
+        // Console.WriteLine("플레이어 소환");
+
+
     }
 
     public override void Update()
     {
-
+        _player.Update();
     }
 
     public override void Render()
     {
-
+        PrintField();
+        _player.Render();   // 팝업 창 개념이라 나중에 랜더함
     }
 
     public override void Exit()
     {
-
+        _field[_player.MapPosition.Y, _player.MapPosition.X].OnTileObject = null;
+        _player.Field = null;
     }
+
+    private void PrintField()
+    {
+        for (int y = 0; y < _field.GetLength(0); y++)
+        {
+            for (int x = 0; x < _field.GetLength(1); x++)
+            {
+                _field[y, x].Print();
+            }
+            Console.WriteLine();
+        }
+    }
+
+
 }

@@ -7,7 +7,7 @@ using System.Text;
 
 public abstract class GameObject
 {
-    public char Symbol {  get; set; }   // 맵에 나올 심볼
+    public string Symbol {  get; set; }   // 맵에 나올 심볼
     public Vector MapPosition { get; set; } // 맵에서 가질 백터 좌표
 }
 
