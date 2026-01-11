@@ -27,7 +27,10 @@ public static class InputManager
 
         // 취소 키
         ConsoleKey.X,
-        ConsoleKey.Escape
+        ConsoleKey.Escape,
+
+        // 로그 키
+        ConsoleKey.Tab
     };
 
     /*
