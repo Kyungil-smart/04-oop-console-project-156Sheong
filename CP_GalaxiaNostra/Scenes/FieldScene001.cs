@@ -48,7 +48,7 @@ public class FieldScene001 : SceneBase
     public override void Render()
     {
         PrintField();
-        PrintFuelGauge();
+        // PrintFuelGauge();
         _player.Render();   // 팝업 창 개념이라 나중에 랜더함
     }
 
@@ -70,10 +70,16 @@ public class FieldScene001 : SceneBase
         }
     }
 
+    /*
     private void PrintFuelGauge()
     {
         Console.SetCursorPosition(0, _field.GetLength(0));
         _player._fuelGauge.Print(ConsoleColor.Yellow);
+        Console.WriteLine();
+        _player.Fuel.Value.ToString().Print(ConsoleColor.Yellow);
+        Console.Write(" / ");
+        _player.MaxFuel.Value.ToString().Print(ConsoleColor.Yellow);
     }
+    */
 
 }

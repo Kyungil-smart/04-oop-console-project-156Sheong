@@ -6,11 +6,12 @@ using System.Text;
 public class Player : GameObject
 {
 
-    private float _maxFuel = 40;
-    private float _currentFuel;
-    private float _currentFuelRate;
+    public float _maxFuel = 40;
+    public float _currentFuel;
 
     public ObservableProperty<float> Fuel;
+    public ObservableProperty<float> MaxFuel;
+    ObservableProperty<float> CurrentFuelRate;
     public string _fuelGauge;
 
 
@@ -28,10 +29,13 @@ public class Player : GameObject
     {
         _currentFuel = 0.5f * _maxFuel;
         Fuel = new ObservableProperty<float>(_currentFuel);
+        MaxFuel = new ObservableProperty<float>(_maxFuel);
+        CurrentFuelRate = new ObservableProperty<float>(_currentFuel  / _maxFuel);
+
 
         Symbol = "🔹";
         IsActiveControl = true;
-        Fuel.AddListener(SetFuelGauge);
+        CurrentFuelRate.AddListener(SetFuelGauge);
         _fuelGauge = "\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8🔲🔲🔲🔲🔲";
         _inventory = new Inventory(this);
 
@@ -39,8 +43,6 @@ public class Player : GameObject
 
     public void Update()
     {
-        _currentFuelRate = _currentFuel / _maxFuel;
-
 
         Vector direction = new Vector();
 
@@ -83,6 +85,8 @@ public class Player : GameObject
     {
         _inventory.IsActive = !_inventory.IsActive;
         IsActiveControl = !_inventory.IsActive;
+
+        Debug.LogWarning($"{_inventory._itemMenu.CurrentIndex}");
     }
 
     public void Move(Vector direction)
@@ -120,7 +124,7 @@ public class Player : GameObject
 
     public void Render()
     {
-        // DrawFuelGauge();
+        DrawFuelGauge();
         _inventory.Render();
     }
 
@@ -131,20 +135,26 @@ public class Player : GameObject
         _inventory.AddItem(item);
     }
 
-    /*
+    
     private void DrawFuelGauge()
     {
-        if (MapPosition.X - 2 >= 0 && MapPosition.Y - 1 >= 0)
-        {
-            Console.SetCursorPosition(0, FieldScene001._field.GetLength(0));
-        }
-
+        /*
+        Console.SetCursorPosition(0, 20);
         _fuelGauge.Print(ConsoleColor.Yellow);
+        */
+
+        Console.SetCursorPosition(0, 12);
+        Console.WriteLine();
+        Fuel.Value.ToString().Print(ConsoleColor.Yellow);
+        Console.Write(" / ");
+        MaxFuel.Value.ToString().Print(ConsoleColor.Yellow);
+
     }
-    */
+    
 
     public void SetFuelGauge(float _currentFuelRate)
     {
+        /*
         switch (_currentFuelRate)
         {
             case > 0.9f:
@@ -180,14 +190,23 @@ public class Player : GameObject
             case > 0.0f:
                 _fuelGauge = "\U0001f7e8🔲🔲🔲🔲🔲🔲🔲🔲🔲";
                 break;
+        
         }
-
+        */
     }
 
-    public void Heal(int value)
+    public void Heal(float value)
     {
-        Fuel.Value += value;
-        Console.WriteLine(_currentFuel);
+        if(Fuel.Value + value >= _maxFuel)
+        {
+            Fuel.Value = _maxFuel;
+        }
+        else
+        {
+            Fuel.Value += value;
+        }
+            
+        // Debug.Log(_currentFuel.ToString());
     }
 
 }

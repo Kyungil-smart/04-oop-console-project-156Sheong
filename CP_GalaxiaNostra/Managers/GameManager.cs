@@ -27,7 +27,11 @@ public class GameManager
             // 키 입력 받기
             InputManager.GetUserInput();
             // SoundManager.ChangeBGM(int.Parse(Console.ReadLine())); // 배경음 테스트 용
-            
+
+            if (InputManager.GetKey(ConsoleKey.Tab))
+            {
+                SceneManager.ChangeScene("Log");
+            }
 
 
             // 데이터 처리
@@ -71,6 +75,8 @@ public class GameManager
         SceneManager.AddScene("Field003", new FieldScene003());
 
         SceneManager.AddScene("Battle001", new BattleScene001()); // 전투 맵 용 씬 1종
+
+        SceneManager.AddScene("Log", new LogScene());
 
         SceneManager.ChangeScene("Title");
 

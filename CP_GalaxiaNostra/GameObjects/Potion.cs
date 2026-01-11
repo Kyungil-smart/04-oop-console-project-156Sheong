@@ -23,7 +23,7 @@ public class Potion : Item, IInteractable
         Inventory = null;
         Owner = null;
 
-        // Debug.Log("Use Potion");
+        Debug.Log("Use Potion");
     }
 
     public void Interact(Player player)
