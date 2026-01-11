@@ -16,7 +16,7 @@ public class Inventory
     }
 
 
-    public void Add(Item item)
+    public void AddItem(Item item)
     {
         if (_items.Count >= 10) return;
 

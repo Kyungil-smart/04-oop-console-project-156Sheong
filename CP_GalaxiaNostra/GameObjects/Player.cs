@@ -11,7 +11,7 @@ public class Player : GameObject
     private float _currentFuelRate;
 
     public ObservableProperty<float> Fuel;
-    private string _fuelGauge;
+    public string _fuelGauge;
 
 
 
@@ -26,13 +26,13 @@ public class Player : GameObject
     // 생성자에서 초기화할 목록을 넣는 함수
     public void Init()
     {
-        _currentFuel = _maxFuel;
+        _currentFuel = 0.5f * _maxFuel;
         Fuel = new ObservableProperty<float>(_currentFuel);
 
         Symbol = "🔹";
         IsActiveControl = true;
         Fuel.AddListener(SetFuelGauge);
-        _fuelGauge = "\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8";
+        _fuelGauge = "\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8🔲🔲🔲🔲🔲";
         _inventory = new Inventory(this);
 
     }
@@ -118,9 +118,9 @@ public class Player : GameObject
 
     }
 
-                public void Render()
+    public void Render()
     {
-        DrawFuelGauge();
+        // DrawFuelGauge();
         _inventory.Render();
     }
 
@@ -128,20 +128,20 @@ public class Player : GameObject
     public void AddItem(Item item)
     {
 
-        _inventory.Add(item);
+        _inventory.AddItem(item);
     }
 
-
+    /*
     private void DrawFuelGauge()
     {
         if (MapPosition.X - 2 >= 0 && MapPosition.Y - 1 >= 0)
         {
-            Console.SetCursorPosition(MapPosition.X - 2, MapPosition.Y - 1);
+            Console.SetCursorPosition(0, FieldScene001._field.GetLength(0));
         }
-        
+
         _fuelGauge.Print(ConsoleColor.Yellow);
     }
-
+    */
 
     public void SetFuelGauge(float _currentFuelRate)
     {
@@ -149,36 +149,36 @@ public class Player : GameObject
         {
             case > 0.9f:
                 //"■■■■■".Print(ConsoleColor.Green);
-                _fuelGauge = "🟨🟨\U0001f7e8\U0001f7e8\U0001f7e8";
+                _fuelGauge = "\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8";
                 break;
             case > 0.8f:
                 //"■■■■□".Print(ConsoleColor.Green);
-                _fuelGauge = "■ ■ ■ ■ ◧";
+                _fuelGauge = "\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8🔲";
                 break;
             case > 0.7f:
                 //"■■■■□".Print(ConsoleColor.Green);
-                _fuelGauge = "■■■■□";
+                _fuelGauge = "\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8🔲🔲";
                 break;
             case > 0.6f:
-                _fuelGauge = "■■■◧□";
+                _fuelGauge = "\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8🔲🔲🔲";
                 break;
             case > 0.5f:
-                _fuelGauge = "■■■□□";
+                _fuelGauge = "\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8🔲🔲🔲🔲";
                 break;
             case > 0.4f:
-                _fuelGauge = "■ ■ ◧ □ □";
+                _fuelGauge = "\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8🔲🔲🔲🔲🔲";
                 break;
             case > 0.3f:
-                _fuelGauge = "■ ■ □ □ □";
+                _fuelGauge = "\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8🔲🔲🔲🔲🔲🔲";
                 break;
             case > 0.2f:
-                _fuelGauge = "■ ◧ □ □ □";
+                _fuelGauge = "\U0001f7e8\U0001f7e8\U0001f7e8🔲🔲🔲🔲🔲🔲🔲";
                 break;
             case > 0.1f:
-                _fuelGauge = "■ □ □ □ □";
+                _fuelGauge = "\U0001f7e8\U0001f7e8🔲🔲🔲🔲🔲🔲🔲🔲";
                 break;
             case > 0.0f:
-                _fuelGauge = "◧ □ □ □ □";
+                _fuelGauge = "\U0001f7e8🔲🔲🔲🔲🔲🔲🔲🔲🔲";
                 break;
         }
 
@@ -187,6 +187,7 @@ public class Player : GameObject
     public void Heal(int value)
     {
         Fuel.Value += value;
+        Console.WriteLine(_currentFuel);
     }
 
 }
