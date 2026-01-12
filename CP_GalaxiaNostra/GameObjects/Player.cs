@@ -20,13 +20,26 @@ public class Player : GameObject
     private Inventory _inventory;
     public bool IsActiveControl { get; private set; }
 
+    // 전투 관련
+    protected int PlayerID;
+    protected string TrainerName;
+    protected virtual TeamType TeamType { get; set; }
+    protected virtual Warship[] pokemonOwned { get; set; }
+
     // 생성자 람다식
-    public Player() => Init();
+    public Player(int id, string name)
+    {
+        Init();
+        this.PlayerID = id;
+        this.TrainerName = name;
+    }
+
 
 
     // 생성자에서 초기화할 목록을 넣는 함수
     public void Init()
     {
+        // 필드 맵 관련
         _maxFuel = 40;
         MaxFuel = new ObservableProperty<float>(_maxFuel);
         _currentFuel = 0.5f * _maxFuel;
@@ -39,6 +52,9 @@ public class Player : GameObject
         CurrentFuelRate.AddListener(SetFuelGauge);
         _fuelGauge = "\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8\U0001f7e8🔲🔲🔲🔲🔲";
         _inventory = new Inventory(this);
+
+
+        // 전투 관련
 
     }
 
@@ -232,6 +248,41 @@ public class Player : GameObject
     public void Encounter()
     {
         SceneManager.ChangeScene("Battle001");
+    }
+
+
+
+    // 전투 관련 메서드 모음
+    public void ShowTrainerStatus()
+    {
+        if (this.TeamType == TeamType.Player) { Console.ForegroundColor = ConsoleColor.Cyan; }  // 플레이어면 시안색
+        else if (this.TeamType == TeamType.EnemyTeam01) { Console.ForegroundColor = ConsoleColor.DarkRed; } // 적이면 어두운 빨간색
+        Console.WriteLine("--------------------------------------------------");
+        Console.WriteLine($"{TrainerName}");
+        for (int i = 0; i < pokemonOwned.Length; i++)
+        {
+            Console.Write($"{pokemonOwned[i].ShipName}급 {pokemonOwned[i].ShipType.ToString()}\t");
+            i++;
+            if(i < pokemonOwned.Length) Console.Write($"{pokemonOwned[i].ShipName}급 {pokemonOwned[i].ShipType.ToString()}");
+            Console.WriteLine();
+        }
+        
+        /*
+        for (int i = 2; i < 4; i++)
+        {
+            if (pokemonOwned.Length < 3) return;
+            else Console.Write($"{pokemonOwned[i].ShipName}급 {pokemonOwned[i].ShipType.ToString()}\t");
+        }
+        Console.WriteLine();
+        for (int i = 4; i < pokemonOwned.Length; i++)
+        {
+            if (pokemonOwned.Length < 5) return;
+            else Console.Write($"{pokemonOwned[i].ShipName}급 {pokemonOwned[i].ShipType.ToString()}\t");
+        }
+        */
+        Console.WriteLine();
+        Console.WriteLine("--------------------------------------------------");
+        Console.ResetColor();
     }
 }
 

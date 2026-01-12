@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 
 
+// (int)피해량 공식 = 40 * {공격자.스킬 위력} * ({공격자.공격력} + 1) / ({피격자.방어력} + 1), 1은 분모 0을 방지하기 위함
+
+
 public class Skill
 {
     public int SkillID;
@@ -24,7 +27,7 @@ public class Warship
     protected virtual int ShipID { get { return 0; } } // 함선 도감 번호
     public virtual string ShipName { get { return "MissingNo."; } }    // 함선 명
 
-    protected virtual ShipType ShipType { get { return ShipType.None; } }  // 함선 등급
+    public virtual ShipType ShipType { get { return ShipType.None; } }  // 함선 등급
 
     // 함선 전투 관련 스텟
     // 부모 클래스는 적용 공식을, 자식 클래스는 실제 데이터를 맡음       
@@ -74,7 +77,7 @@ public class Warship
     public void ShowPokemonStatus()
     {
         Console.WriteLine("--------------------------------------------------");
-        Console.WriteLine($"  {ShipName}  |  {ShipType} 급  |  Lv.{Level}");
+        Console.WriteLine($"  {ShipName}급 {ShipType.ToString()}  |  Lv.{Level}");
         Console.WriteLine($"  HP: {HPCurrent} / {HPMax}  |  방어력: {DefencePower}");
         Console.WriteLine($"  공격력: {AttackPower}  |  전투 속도: {BattleSpeed}");
         Console.WriteLine("--------------------------------------------------");
@@ -100,7 +103,7 @@ public class Warship
         // 자식 클래스 포켓몬을 구분하기 위한 기호, set을 없애 바뀌는 것을 방지
         protected override int ShipID { get { return 18; } }
         public override string ShipName { get { return "범고래"; } }
-        protected override ShipType ShipType { get { return ShipType.Corvette; } }
+        public override ShipType ShipType { get { return ShipType.Corvette; } }
 
         // 자식 클래스의 스텟, set을 없애 바뀌는 것을 방지
         protected override int BaseHPMax { get { return 40; } }
@@ -121,7 +124,7 @@ public class Warship
         // 자식 클래스 포켓몬을 구분하기 위한 기호, set을 없애 바뀌는 것을 방지
         protected override int ShipID { get { return 22; } }
         public override string ShipName { get { return "아자와크"; } }
-        protected override ShipType ShipType { get { return ShipType.Corvette; } }
+        public override ShipType ShipType { get { return ShipType.Corvette; } }
 
         // 자식 클래스의 스텟, set을 없애 바뀌는 것을 방지
         protected override int BaseHPMax { get { return 30; } }
@@ -142,7 +145,7 @@ public class Warship
         // 자식 클래스 포켓몬을 구분하기 위한 기호, set을 없애 바뀌는 것을 방지
         protected override int ShipID { get { return 24; } }
         public override string ShipName { get { return "데어링"; } }
-        protected override ShipType ShipType { get { return ShipType.Corvette; } }
+        public override ShipType ShipType { get { return ShipType.Corvette; } }
 
         // 자식 클래스의 스텟, set을 없애 바뀌는 것을 방지
         protected override int BaseHPMax { get { return 30; } }
@@ -163,7 +166,7 @@ public class Warship
         // 자식 클래스 포켓몬을 구분하기 위한 기호, set을 없애 바뀌는 것을 방지
         protected override int ShipID { get { return 26; } }
         public override string ShipName { get { return "커세어"; } }
-        protected override ShipType ShipType { get { return ShipType.Frigate; } }
+        public override ShipType ShipType { get { return ShipType.Frigate; } }
 
         // 자식 클래스의 스텟, set을 없애 바뀌는 것을 방지
         protected override int BaseHPMax { get { return 60; } }
@@ -184,7 +187,7 @@ public class Warship
         // 자식 클래스 포켓몬을 구분하기 위한 기호, set을 없애 바뀌는 것을 방지
         protected override int ShipID { get { return 28; } }
         public override string ShipName { get { return "드라군"; } }
-        protected override ShipType ShipType { get { return ShipType.Frigate; } }
+        public override ShipType ShipType { get { return ShipType.Frigate; } }
 
         // 자식 클래스의 스텟, set을 없애 바뀌는 것을 방지
         protected override int BaseHPMax { get { return 70; } }
@@ -213,7 +216,7 @@ public class Warship
         // 자식 클래스 포켓몬을 구분하기 위한 기호, set을 없애 바뀌는 것을 방지
         protected override int ShipID { get { return 38; } }
         public override string ShipName { get { return "샤쇠르"; } }
-        protected override ShipType ShipType { get { return ShipType.Frigate; } }
+        public override ShipType ShipType { get { return ShipType.Frigate; } }
 
         // 자식 클래스의 스텟, set을 없애 바뀌는 것을 방지
         protected override int BaseHPMax { get { return 60; } }
@@ -234,7 +237,7 @@ public class Warship
         // 자식 클래스 포켓몬을 구분하기 위한 기호, set을 없애 바뀌는 것을 방지
         protected override int ShipID { get { return 47; } }
         public override string ShipName { get { return "킨샤사"; } }
-        protected override ShipType ShipType { get { return ShipType.Destroyer; } }
+        public override ShipType ShipType { get { return ShipType.Destroyer; } }
 
         // 자식 클래스의 스텟, set을 없애 바뀌는 것을 방지
         protected override int BaseHPMax { get { return 90; } }
@@ -255,7 +258,7 @@ public class Warship
         // 자식 클래스 포켓몬을 구분하기 위한 기호, set을 없애 바뀌는 것을 방지
         protected override int ShipID { get { return 53; } }
         public override string ShipName { get { return "텐진"; } }
-        protected override ShipType ShipType { get { return ShipType.Destroyer; } }
+        public override ShipType ShipType { get { return ShipType.Destroyer; } }
 
         // 자식 클래스의 스텟, set을 없애 바뀌는 것을 방지
         protected override int BaseHPMax { get { return 95; } }
@@ -276,7 +279,7 @@ public class Warship
         // 자식 클래스 포켓몬을 구분하기 위한 기호, set을 없애 바뀌는 것을 방지
         protected override int ShipID { get { return 55; } }
         public override string ShipName { get { return "카이로"; } }
-        protected override ShipType ShipType { get { return ShipType.Destroyer; } }
+        public override ShipType ShipType { get { return ShipType.Destroyer; } }
 
         // 자식 클래스의 스텟, set을 없애 바뀌는 것을 방지
         protected override int BaseHPMax { get { return 80; } }
@@ -297,7 +300,7 @@ public class Warship
         // 자식 클래스 포켓몬을 구분하기 위한 기호, set을 없애 바뀌는 것을 방지
         protected override int ShipID { get { return 59; } }
         public override string ShipName { get { return "도쿄"; } }
-        protected override ShipType ShipType { get { return ShipType.Destroyer; } }
+        public override ShipType ShipType { get { return ShipType.Destroyer; } }
 
         // 자식 클래스의 스텟, set을 없애 바뀌는 것을 방지
         protected override int BaseHPMax { get { return 130; } }
@@ -318,7 +321,7 @@ public class Warship
         // 자식 클래스 포켓몬을 구분하기 위한 기호, set을 없애 바뀌는 것을 방지
         protected override int ShipID { get { return 65; } }
         public override string ShipName { get { return "상파울루"; } }
-        protected override ShipType ShipType { get { return ShipType.Cruiser; } }
+        public override ShipType ShipType { get { return ShipType.Cruiser; } }
 
         // 자식 클래스의 스텟, set을 없애 바뀌는 것을 방지
         protected override int BaseHPMax { get { return 150; } }
@@ -339,7 +342,7 @@ public class Warship
         // 자식 클래스 포켓몬을 구분하기 위한 기호, set을 없애 바뀌는 것을 방지
         protected override int ShipID { get { return 97; } }
         public override string ShipName { get { return "베네룩스"; } }
-        protected override ShipType ShipType { get { return ShipType.Cruiser; } }
+        public override ShipType ShipType { get { return ShipType.Cruiser; } }
 
         // 자식 클래스의 스텟, set을 없애 바뀌는 것을 방지
         protected override int BaseHPMax { get { return 110; } }
@@ -360,7 +363,7 @@ public class Warship
         // 자식 클래스 포켓몬을 구분하기 위한 기호, set을 없애 바뀌는 것을 방지
         protected override int ShipID { get { return 110; } }
         public override string ShipName { get { return "텍사스"; } }
-        protected override ShipType ShipType { get { return ShipType.Cruiser; } }
+        public override ShipType ShipType { get { return ShipType.Cruiser; } }
 
         // 자식 클래스의 스텟, set을 없애 바뀌는 것을 방지
         protected override int BaseHPMax { get { return 160; } }
@@ -381,7 +384,7 @@ public class Warship
         // 자식 클래스 포켓몬을 구분하기 위한 기호, set을 없애 바뀌는 것을 방지
         protected override int ShipID { get { return 121; } }
         public override string ShipName { get { return "라자스탄"; } }
-        protected override ShipType ShipType { get { return ShipType.Cruiser; } }
+        public override ShipType ShipType { get { return ShipType.Cruiser; } }
 
         // 자식 클래스의 스텟, set을 없애 바뀌는 것을 방지
         protected override int BaseHPMax { get { return 200; } }
@@ -402,13 +405,13 @@ public class Warship
         // 자식 클래스 포켓몬을 구분하기 위한 기호, set을 없애 바뀌는 것을 방지
         protected override int ShipID { get { return 128; } }
         public override string ShipName { get { return "차라"; } }
-        protected override ShipType ShipType { get { return ShipType.Battleship; } }
+        public override ShipType ShipType { get { return ShipType.Battleship; } }
 
         // 자식 클래스의 스텟, set을 없애 바뀌는 것을 방지
-        protected override int BaseHPMax { get { return 200; } }
-        protected override int BaseAtk { get { return 100; } }
-        protected override int BaseDef { get { return 100; } }
-        protected override int BaseSpd { get { return 70; } }
+        protected override int BaseHPMax { get { return 220; } }
+        protected override int BaseAtk { get { return 160; } }
+        protected override int BaseDef { get { return 140; } }
+        protected override int BaseSpd { get { return 65; } }
         protected override Skill[] CharSkill { get; set; }
     }
 
@@ -423,11 +426,11 @@ public class Warship
         // 자식 클래스 포켓몬을 구분하기 위한 기호, set을 없애 바뀌는 것을 방지
         protected override int ShipID { get { return 143; } }
         public override string ShipName { get { return "벨라트릭스"; } }
-        protected override ShipType ShipType { get { return ShipType.Battleship; } }
+        public override ShipType ShipType { get { return ShipType.Battleship; } }
 
         // 자식 클래스의 스텟, set을 없애 바뀌는 것을 방지
         protected override int BaseHPMax { get { return 180; } }
-        protected override int BaseAtk { get { return 200; } }
+        protected override int BaseAtk { get { return 240; } }
         protected override int BaseDef { get { return 100; } }
         protected override int BaseSpd { get { return 60; } }
         protected override Skill[] CharSkill { get; set; }
@@ -444,7 +447,7 @@ public class Warship
         // 자식 클래스 포켓몬을 구분하기 위한 기호
         protected override int ShipID { get { return 149; } }
         public override string ShipName { get { return "아르크투루스"; } }
-        protected override ShipType ShipType { get { return ShipType.Battleship; } }
+        public override ShipType ShipType { get { return ShipType.Battleship; } }
 
         // 자식 클래스의 스텟
         protected override int BaseHPMax { get { return 300; } }
