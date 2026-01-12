@@ -18,19 +18,23 @@ public class Inventory
 
     public void AddItem(Item item)
     {
+        
         if (_items.Count >= 10) return;
 
         _items.Add(item);
         _itemMenu.AddMenu(item.Name, item.UseItemEffect);
         item.Inventory = this;
         item.Owner = _owner;
+        
     }
 
 
     public void RemoveInven(Item item)
     {
+        
         _items.Remove(item);
         _itemMenu.RemoveMenu();
+        
     }
 
 

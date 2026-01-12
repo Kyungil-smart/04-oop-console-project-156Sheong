@@ -78,15 +78,19 @@ public class Player : GameObject
         {
             HandleControl();
         }
+
+
     }
 
 
     public void HandleControl()
     {
+        /*
         _inventory.IsActive = !_inventory.IsActive;
         IsActiveControl = !_inventory.IsActive;
 
         Debug.LogWarning($"{_inventory._itemMenu.CurrentIndex}");
+        */
     }
 
     public void Move(Vector direction)
@@ -104,6 +108,12 @@ public class Player : GameObject
         }
 
         // 장애물인지 확인
+        /*
+        if()
+        {
+            return;
+        }
+        */
 
         GameObject nextTileObject = Field[nextPos.Y, nextPos.X].OnTileObject;
 
@@ -120,6 +130,8 @@ public class Player : GameObject
         Field[nextPos.Y, nextPos.X].OnTileObject = this;
         MapPosition = nextPos;
 
+        // 연료 -1
+        Fuel.Value -= 1;
     }
 
     public void Render()

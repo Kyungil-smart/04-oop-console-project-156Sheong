@@ -34,10 +34,10 @@ public class FieldScene001 : SceneBase
         _field[_player.MapPosition.Y, _player.MapPosition.X].OnTileObject = _player;
         // Console.WriteLine("플레이어 소환");
 
-        _field[3, 5].OnTileObject = new Potion() { Name = "Potion01" };
-        _field[2, 15].OnTileObject = new Potion() { Name = "Potion02" };
-        _field[7, 3].OnTileObject = new Potion() { Name = "Potion03" };
-        _field[8, 12].OnTileObject = new Potion() { Name = "Potion04" };
+        _field[3, 5].OnTileObject = new FuelTank() { Name = "Potion01" };
+        _field[2, 15].OnTileObject = new FuelTank() { Name = "Potion02" };
+        _field[7, 3].OnTileObject = new FuelTank() { Name = "Potion03" };
+        _field[8, 12].OnTileObject = new FuelTank() { Name = "Potion04" };
     }
 
     public override void Update()

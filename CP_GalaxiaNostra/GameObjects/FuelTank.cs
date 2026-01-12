@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 
 
-public class Potion : Item, IInteractable
+public class FuelTank : Item, IInteractable
 {
-    public Potion() => Init();
+    public FuelTank() => Init();
 
     private void Init()
     {
@@ -16,7 +16,7 @@ public class Potion : Item, IInteractable
     public override void UseItemEffect()
     {
         // 아이템 사용효과
-        Owner.Heal(1);  // 힐
+        Owner.Heal(10);  // 힐
 
         // 힐 사용후 끊을 것들
         Inventory.RemoveInven(this);
@@ -30,5 +30,7 @@ public class Potion : Item, IInteractable
     {
 
         player.AddItem(this);
+        UseItemEffect();
+
     }
 }
