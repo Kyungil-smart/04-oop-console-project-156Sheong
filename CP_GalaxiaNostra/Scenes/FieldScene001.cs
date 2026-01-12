@@ -28,6 +28,9 @@ public class FieldScene001 : SceneBase
 
     public override void Enter()
     {
+        // 사운드 변경
+        SoundManager.ChangeBGM(4);
+
         _player.Field = _field;
         _player.CurrentFuel.Value = 0.5f * _player.MaxFuel.Value;   // 게임 재시작 이후 연료 넣기 위해 수정
 
