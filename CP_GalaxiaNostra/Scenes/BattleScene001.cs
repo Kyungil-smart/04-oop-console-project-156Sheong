@@ -36,13 +36,18 @@ public class BattleScene001 : SceneBase
 
     public override void Enter()
     {
+
+
         GameManager._player.IsActiveControl = false;
-        combatManager.Init(GameManager._player, enemyPlayer, _battleField);
+
+        // 적이 먼저 스폰되어야 오류 안 생김
+        enemyPlayer[0] = new PlayerEnemy001(301, "우주 해적");
+        combatManager.EnterInit(GameManager._player, enemyPlayer, _battleField);
 
         // 사운드 변경
         SoundManager.ChangeBGM(7);
 
-        enemyPlayer[0] = new PlayerEnemy001(301, "우주 해적");
+        
 
     }
 

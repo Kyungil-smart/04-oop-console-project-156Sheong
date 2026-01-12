@@ -13,12 +13,12 @@ public class YouPlayer : Player
     public YouPlayer(int id, string name) : base(id, name)
     {
         // 생성 시 포켓몬 6마리 자동 생성
-        shipOwned[0] = new Acrux(1006, 1, TeamType.Player);
-        shipOwned[1] = new Rajasthan(1002, 1, TeamType.Player);
-        shipOwned[2] = new SaoPaulo(1004, 1, TeamType.Player);
-        shipOwned[3] = new Tianjin(1003, 1, TeamType.Player);
-        shipOwned[4] = new Kinshasa(1005, 1, TeamType.Player);
-        shipOwned[5] = new Corsair(1001, 1, TeamType.Player);
+        shipOwned[0] = new Acrux(1006, 10, TeamType.Player);
+        shipOwned[1] = new Rajasthan(1002, 10, TeamType.Player);
+        shipOwned[2] = new SaoPaulo(1004, 10, TeamType.Player);
+        shipOwned[3] = new Tianjin(1003, 10, TeamType.Player);
+        shipOwned[4] = new Kinshasa(1005, 10, TeamType.Player);
+        shipOwned[5] = new Corsair(1001, 10, TeamType.Player);
     }
 
 }
@@ -31,9 +31,9 @@ public class PlayerEnemy001 : Player
     public PlayerEnemy001(int id, string name) : base(id, name)
     {
         // 생성 시 포켓몬 3마리 자동 생성
-        shipOwned[0] = new Orca(3001,18, TeamType.EnemyTeam01);
-        shipOwned[1] = new Azawakh(3002, 1, TeamType.EnemyTeam01);
-        shipOwned[2] = new Daring(3003, 1, TeamType.EnemyTeam01);
+        shipOwned[0] = new Orca(3001, 10, TeamType.EnemyTeam01);
+        shipOwned[1] = new Azawakh(3002, 10, TeamType.EnemyTeam01);
+        shipOwned[2] = new Daring(3003, 10, TeamType.EnemyTeam01);
     }
 }
 
@@ -46,9 +46,9 @@ public class PlayerEnemy002 : Player
     {
         TeamType = TeamType.EnemyTeam01;
         // 생성 시 포켓몬 3마리 자동 생성
-        shipOwned[0] = new Daring(3001, 1, TeamType.EnemyTeam01);
-        shipOwned[1] = new Dragon(3002, 1, TeamType.EnemyTeam01);
-        shipOwned[2] = new Tianjin(3003, 1, TeamType.EnemyTeam01);
+        shipOwned[0] = new Daring(3001, 10, TeamType.EnemyTeam01);
+        shipOwned[1] = new Dragon(3002, 10, TeamType.EnemyTeam01);
+        shipOwned[2] = new Tianjin(3003, 10, TeamType.EnemyTeam01);
     }
 }
 
@@ -61,9 +61,9 @@ public class PlayerEnemy003 : Player
     {
         TeamType = TeamType.EnemyTeam01;
         // 생성 시 포켓몬 6마리 자동 생성
-        shipOwned[0] = new Corsair(3001, 1, TeamType.EnemyTeam01);
-        shipOwned[1] = new Tokyo(3002, 1, TeamType.EnemyTeam01);
-        shipOwned[2] = new Benelux(3003, 1, TeamType.EnemyTeam01);
+        shipOwned[0] = new Corsair(3001, 10, TeamType.EnemyTeam01);
+        shipOwned[1] = new Tokyo(3002, 10, TeamType.EnemyTeam01);
+        shipOwned[2] = new Benelux(3003, 10, TeamType.EnemyTeam01);
     }
 }
 

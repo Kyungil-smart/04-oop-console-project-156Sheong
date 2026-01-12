@@ -42,10 +42,10 @@ public class Warship
 
     // 실제 적용되는 공식 메서드
     // (int 형)능력치 = 기초 능력 * ((현재 레벨 + 5) / 25)
-    public int HPMax { get { return (int)(this.BaseHPMax * ((this.Level + 5) / 25)); } }
-    public int AttackPower { get { return (int)(this.BaseAtk * ((this.Level + 5) / 25)); } }
-    public int DefencePower { get { return (int)(this.BaseDef * ((this.Level + 5) / 25)); } }
-    public int BattleSpeed { get { return (int)(this.BaseSpd * ((this.Level + 5) / 25)); } }
+    public int HPMax { get { return (int)(this.BaseHPMax * ((this.Level + 5f) / 25f)); } }
+    public int AttackPower { get { return (int)(this.BaseAtk * ((this.Level + 5f) / 25f)); } }
+    public int DefencePower { get { return (int)(this.BaseDef * ((this.Level + 5f) / 25f)); } }
+    public int BattleSpeed { get { return (int)(this.BaseSpd * ((this.Level + 5f) / 25f)); } }
     public virtual Skill CharSkill { get; } = new Skill { SkillPower = 1f };
 
     // 생명력 관리용 메서드

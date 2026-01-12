@@ -8,34 +8,44 @@ public class CombatManager
 {
     private List<Warship> allShips = new List<Warship>();
     int nowTurn;
+    int aliveAllyShipCount;
+    int aliveEnemyShipCount;
 
-    public void Init(Player player, Player[] enemyPlayers, Tile[,] battleTile)
+    public void EnterInit(Player player, Player[] enemyPlayers, Tile[,] battleTile)
     {
         // 이전 전투 관련 클리어
         allShips.Clear();
         nowTurn = 0;
+        aliveAllyShipCount = 0;
+        aliveEnemyShipCount = 0;
 
         // 아군 군함 위치 넣기
         int playerPosX = 0;
         foreach (Warship ship in player.shipOwned)
         {
+            // 생존한 군함 넣기
             if (ship != null && ship.IsAlive == true)
             {
                 ship.BattlePosition = playerPosX;
                 allShips.Add(ship);
                 playerPosX += 1;
+                aliveAllyShipCount += 1;
             }
         }
 
         // 적군 군함 위치 넣기
         int enemyPosX = battleTile.GetLength(1);   // 전투 맵의 X 축만 넣기
-        foreach (Warship ship in player.shipOwned)
+        for (int i = 0; i < enemyPlayers.Length; i++)
         {
-            if (ship != null && ship.IsAlive == true)
+            foreach (Warship ship in enemyPlayers[i].shipOwned)
             {
-                ship.BattlePosition = enemyPosX;
-                allShips.Add(ship);
-                enemyPosX -= 1;
+                if (ship != null && ship.IsAlive == true)
+                {
+                    ship.BattlePosition = enemyPosX;
+                    allShips.Add(ship);
+                    enemyPosX -= 1;
+                    aliveEnemyShipCount += 1;
+                }
             }
         }
 
@@ -44,7 +54,7 @@ public class CombatManager
 
     public void UpdateTurn()
     {
-        allShips.Sort((x, y) => y.BattleSpeed.CompareTo(x.BattleSpeed));    //  https://stackoverflow.com/questions/66182228/how-does-this-sortx-y-x-comparetoy-work
+        allShips.Sort((x, y) => y.BattleSpeed.CompareTo(x.BattleSpeed));
 
         foreach (var attacker in allShips)
         {
@@ -58,9 +68,37 @@ public class CombatManager
             {
                 AttackTarget(attacker, target);
             }
-
-            // 승리 와 패배 로직
         }
+
+        // 이거 있어야 생존, 죽음 업데이트 가능
+        aliveAllyShipCount = 0;
+        aliveEnemyShipCount = 0;
+
+        for (int j = 0; j < allShips.Count; j++)
+        {
+            if (allShips[j].IsAlive && allShips[j].MyTeamType == TeamType.Player)
+            {
+                aliveAllyShipCount++;
+            }
+            else if (allShips[j].IsAlive && allShips[j].MyTeamType != TeamType.Player)
+            {
+                aliveEnemyShipCount++;
+            }
+        }
+
+        // 승리 와 패배 로직
+
+        if (aliveAllyShipCount <= 0)
+        {
+            Defeat();
+        }
+        else if (aliveEnemyShipCount <= 0)
+        {
+
+            Victory();
+        }
+
+
 
     }
 
@@ -108,13 +146,14 @@ public class CombatManager
     // 승리 매서드
     public void Victory()
     {
-
+        SceneManager.ChangeScene("Field001");
     }
 
     // 패배 매서드
     public void Defeat()
     {
-
+        SceneManager.ChangeScene("GameOver");
     }
 }
+
 
