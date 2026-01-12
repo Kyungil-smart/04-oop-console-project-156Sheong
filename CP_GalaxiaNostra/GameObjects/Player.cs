@@ -18,7 +18,7 @@ public class Player : GameObject
 
     public Tile[,] Field { get; set; }
     private Inventory _inventory;
-    public bool IsActiveControl { get; private set; }
+    public bool IsActiveControl { get; set; }
 
     // 전투 관련
     protected int PlayerID;
@@ -64,42 +64,47 @@ public class Player : GameObject
         Vector direction = new Vector();
 
 
-        if (InputManager.GetKey(ConsoleKey.UpArrow) || InputManager.GetKey(ConsoleKey.W))
+        if (IsActiveControl)
         {
-            Move(Vector.Up);
-            _inventory.SelectUp();
-        }
+            if (InputManager.GetKey(ConsoleKey.UpArrow) || InputManager.GetKey(ConsoleKey.W))
+            {
+                Move(Vector.Up);
+                _inventory.SelectUp();
+            }
 
-        if (InputManager.GetKey(ConsoleKey.DownArrow) || InputManager.GetKey(ConsoleKey.S))
-        {
-            Move(Vector.Down);
-            _inventory.SelectDown();
-        }
+            if (InputManager.GetKey(ConsoleKey.DownArrow) || InputManager.GetKey(ConsoleKey.S))
+            {
+                Move(Vector.Down);
+                _inventory.SelectDown();
+            }
 
-        if (InputManager.GetKey(ConsoleKey.LeftArrow) || InputManager.GetKey(ConsoleKey.A))
-        {
-            Move(Vector.Left);
-        }
+            if (InputManager.GetKey(ConsoleKey.LeftArrow) || InputManager.GetKey(ConsoleKey.A))
+            {
+                Move(Vector.Left);
+            }
 
-        if (InputManager.GetKey(ConsoleKey.RightArrow) || InputManager.GetKey(ConsoleKey.D))
-        {
-            Move(Vector.Right);
-        }
+            if (InputManager.GetKey(ConsoleKey.RightArrow) || InputManager.GetKey(ConsoleKey.D))
+            {
+                Move(Vector.Right);
+            }
 
-        if (InputManager.GetKey(ConsoleKey.Z) || InputManager.GetKey(ConsoleKey.Spacebar) || InputManager.GetKey(ConsoleKey.Enter))
-        {
-            _inventory.Select();
-        }
+            if (InputManager.GetKey(ConsoleKey.Z) ||
+                InputManager.GetKey(ConsoleKey.Spacebar) ||
+                InputManager.GetKey(ConsoleKey.Enter))
+            {
+                // _inventory.Select();
+            }
 
-        if (InputManager.GetKey(ConsoleKey.X) || InputManager.GetKey(ConsoleKey.Escape))
-        {
-            HandleControl();
-        }
+            if (InputManager.GetKey(ConsoleKey.X) || InputManager.GetKey(ConsoleKey.Escape))
+            {
+                // HandleControl();
+            }
 
-        if(CurrentFuel.Value <= 0)
-        {
-            CurrentFuel.Value = 0;
-            SceneManager.ChangeScene("GameOver");
+            if (CurrentFuel.Value <= 0)
+            {
+                CurrentFuel.Value = 0;
+                SceneManager.ChangeScene("GameOver");
+            }
         }
     }
 
@@ -230,7 +235,7 @@ public class Player : GameObject
         */
     }
 
-    public void Heal(float value)
+    public void GetFuel(float value)
     {
         if(CurrentFuel.Value + value >= _maxFuel)
         {
@@ -266,7 +271,9 @@ public class Player : GameObject
             if(i < pokemonOwned.Length) Console.Write($"{pokemonOwned[i].ShipName}급 {pokemonOwned[i].ShipType.ToString()}");
             Console.WriteLine();
         }
-        
+        Console.WriteLine();
+        Console.WriteLine("--------------------------------------------------");
+        Console.ResetColor();
         /*
         for (int i = 2; i < 4; i++)
         {
@@ -280,9 +287,7 @@ public class Player : GameObject
             else Console.Write($"{pokemonOwned[i].ShipName}급 {pokemonOwned[i].ShipType.ToString()}\t");
         }
         */
-        Console.WriteLine();
-        Console.WriteLine("--------------------------------------------------");
-        Console.ResetColor();
+
     }
 }
 

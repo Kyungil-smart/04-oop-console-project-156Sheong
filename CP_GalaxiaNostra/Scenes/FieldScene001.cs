@@ -36,6 +36,7 @@ public class FieldScene001 : SceneBase
 
         _player.MapPosition = new Vector(4, 4);    // 4.4 위치에서 생성 
         _field[_player.MapPosition.Y, _player.MapPosition.X].OnTileObject = _player;
+        _player.IsActiveControl = true;
         // Console.WriteLine("플레이어 소환");
 
         _field[3, 5].OnTileObject = new FuelEvent() { Name = "Potion01" };

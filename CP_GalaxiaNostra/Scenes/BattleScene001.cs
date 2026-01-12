@@ -35,6 +35,7 @@ public class BattleScene001 : SceneBase
 
     public override void Enter()
     {
+        GameManager._player.IsActiveControl = false;
         // 사운드 변경
         SoundManager.ChangeBGM(7);
 
@@ -55,6 +56,7 @@ public class BattleScene001 : SceneBase
         GameManager._player.ShowTrainerStatus();
         uidData.PrintVSUI();
 
+        // 나중에 복수의 적 함대가 등장할 수도 있음
         foreach (Player p in enemyPlayer)
         {
             if (p is PlayerEnemy001 || p is PlayerEnemy002 || p is PlayerEnemy003)
