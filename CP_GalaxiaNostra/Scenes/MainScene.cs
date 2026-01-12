@@ -32,15 +32,19 @@ public class MainScene : SceneBase
     public override void Update()
     {
         // 메뉴에서 방향키 누르면 위 메뉴 이동 / 아래 메뉴 이동 / 메뉴 선택 이 가능하도록
-        if(InputManager.GetKey(ConsoleKey.UpArrow))
+        if(InputManager.GetKey(ConsoleKey.UpArrow) || 
+            InputManager.GetKey(ConsoleKey.W))
         {
             _MainMenu.SelectUp();
         }
-        if (InputManager.GetKey(ConsoleKey.DownArrow))
+        if (InputManager.GetKey(ConsoleKey.DownArrow) || 
+            InputManager.GetKey(ConsoleKey.S))
         {
             _MainMenu.SelectDown();
         }
-        if (InputManager.GetKey(ConsoleKey.Enter))
+        if (InputManager.GetKey(ConsoleKey.Z) ||
+        InputManager.GetKey(ConsoleKey.Spacebar) ||
+        InputManager.GetKey(ConsoleKey.Enter))
         {
             _MainMenu.SelectMenu();
         }
