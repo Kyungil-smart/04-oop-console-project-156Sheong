@@ -34,5 +34,11 @@ public class RandomEvent : Item, IInteractable
 
     }
 
+
+    public void Interact(GameObject player)
+    {
+
+    }
+
 }
 

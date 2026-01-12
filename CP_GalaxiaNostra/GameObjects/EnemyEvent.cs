@@ -33,4 +33,9 @@ public class EnemyEvent : Item, IInteractable
         UseItemEffect();
 
     }
+
+    public void Interact(GameObject player)
+    {
+
+    }
 }

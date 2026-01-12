@@ -33,4 +33,11 @@ public class FuelEvent : Item, IInteractable
         UseItemEffect();
 
     }
+
+    public void Interact(GameObject player)
+    {
+
+    }
+
+
 }
