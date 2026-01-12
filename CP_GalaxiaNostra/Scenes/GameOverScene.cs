@@ -3,13 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 
 
-public class BattleScene001 : SceneBase
+public class GameOverScene : SceneBase
 {
-    public Tile[,] _field = new Tile[10, 6];  // 전투 필드 크기
-
-
-
-
     public override void Enter()
     {
 
@@ -29,4 +24,5 @@ public class BattleScene001 : SceneBase
     {
 
     }
+
 }
