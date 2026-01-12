@@ -9,6 +9,8 @@ public class BattleScene001 : SceneBase
 
     private PCruiser _pCruiser;
 
+    private bool isPlayerTurn = true;
+
     public BattleScene001(PCruiser pCruiser) => Init(pCruiser);
 
     public void Init(PCruiser pCruiser)
@@ -40,6 +42,11 @@ public class BattleScene001 : SceneBase
 
     public override void Update()
     {
+        if()
+        {
+
+        }
+
         _pCruiser.Update();
     }
 
