@@ -94,10 +94,8 @@ public class CombatManager
         }
         else if (aliveEnemyShipCount <= 0)
         {
-
             Victory();
         }
-
 
 
     }
@@ -135,9 +133,9 @@ public class CombatManager
         // (int)피해량 공식 = 40 * {공격자.스킬 위력} * ({공격자.공격력} + 1) / ({피격자.방어력} + 1), 1은 분모 0을 방지하기 위함
         int finalDMG = (int)(40 * attacker.CharSkill.SkillPower * (attacker.AttackPower + 1f) / (target.DefencePower + 1f));
 
-        Debug.Log($"{attacker.ShipName}의 공격 -> {target.ShipName}가 피격 | 거리: {Math.Abs(attacker.BattlePosition - target.BattlePosition)}");
-
         target.TakeDamage(finalDMG);
+        Debug.Log($"{attacker.MyTeamType} {attacker.ShipName}의 공격 -> {target.ShipName}가 피격 | 거리 : {Math.Abs(attacker.BattlePosition - target.BattlePosition)}");
+        Debug.Log($"피해량 :{finalDMG} | {target.ShipName} 남은 생명력 : {target.HPCurrent}");
     }
 
 
@@ -146,7 +144,9 @@ public class CombatManager
     // 승리 매서드
     public void Victory()
     {
+        GameManager._player.GetFuel(15);
         SceneManager.ChangeScene("Field001");
+        
     }
 
     // 패배 매서드
