@@ -8,9 +8,9 @@ public class GameManager
 {
     public static bool IsGameRunning {  get; set; }    // 게임 실행 여부를 구분하는 전역 변수, 사용하기 쉽게 public 으로 열어둠
 
-    private Player _player;
+    public static Player _player = new YouPlayer(101, "당신");
     
-    private PCruiser _pcruiser;
+    // private PCruiser _pcruiser;
 
     // 게임을 실행하는 함수
     public void Run()
@@ -63,11 +63,11 @@ public class GameManager
 
 
         // 필드 맵에서 돌아다닐 플레이어 인스턴스 생성
-        _player = new Player();
-        _pcruiser = new PCruiser();
+
+        // _pcruiser = new PCruiser();
 
         // 배경음 불러오기
-        SoundManager.RunningBGM(0);
+        SoundManager.RunningBGM(1);
 
         // 각종 씬 불러오기
         SceneManager.AddScene("Title", new TitleScene());   // 타이틀 용 씬
@@ -77,7 +77,7 @@ public class GameManager
         SceneManager.AddScene("Field002", new FieldScene002());
         SceneManager.AddScene("Field003", new FieldScene003());
 
-        SceneManager.AddScene("Battle001", new BattleScene001(_pcruiser)); // 전투 맵 용 씬 1종
+        SceneManager.AddScene("Battle001", new BattleScene001()); // 전투 맵 용 씬 1종
 
         SceneManager.AddScene("Log", new LogScene());   // 로그 용 씬
 
