@@ -5,24 +5,72 @@ using System.Text;
 
 public class GameOverScene : SceneBase
 {
+    private MenuList _GameOverMenu;
+
+
+    public GameOverScene()
+    {
+        Init();
+    }
+
+    public void Init()
+    {
+        _GameOverMenu = new MenuList();
+        _GameOverMenu.AddMenu("다시 시작", StartNewMain);
+    }
+
+
     public override void Enter()
     {
+        _GameOverMenu.Reset();
 
     }
 
+
     public override void Update()
     {
-
+        if (InputManager.GetKey(ConsoleKey.Z) ||
+        InputManager.GetKey(ConsoleKey.Spacebar) ||
+        InputManager.GetKey(ConsoleKey.Enter))
+        {
+            _GameOverMenu.SelectMenu();
+        }
     }
 
     public override void Render()
     {
-
+        Console.SetCursorPosition(1, 1);
+        Console.WriteLine("자유는 어디서 오는가.");
+        Console.WriteLine();
+        Console.SetCursorPosition(1, 4);
+        Console.WriteLine("그것은 견고한 체제도, 광활한 공간도 아니었다.");
+        Console.SetCursorPosition(1, 6);
+        Console.WriteLine("주어진 신분이나, 손에 쥔 풍요도 아니었다.");
+        Console.WriteLine();
+        Console.SetCursorPosition(1, 9);
+        Console.WriteLine("우리가 찾아 헤맨 자유의 실체는 오직 당신의 내면,");
+        Console.SetCursorPosition(1, 11);
+        Console.WriteLine("그 숭고한 상태에 존재했다.");
+        Console.WriteLine();
+        Console.SetCursorPosition(1, 14);
+        Console.WriteLine("역사는 당신의 실패를 기록할지 모르나,");
+        Console.SetCursorPosition(1, 16);
+        Console.WriteLine("당신 내면의 자유만은 결코 패배하지 않았음을 기억할 것이다.");
+        Console.SetCursorPosition(5, 19);
+        _GameOverMenu.RenderLeft(5, 20);
     }
 
     public override void Exit()
     {
 
     }
+
+    public void StartNewMain()
+    {
+        // Console.WriteLine("게임 입장 클릭");
+        SceneManager.ChangeScene("Main");
+    }
+
+
 
 }

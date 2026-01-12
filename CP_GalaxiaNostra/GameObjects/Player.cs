@@ -82,7 +82,7 @@ public class Player : GameObject
         if(CurrentFuel.Value <= 0)
         {
             CurrentFuel.Value = 0;
-
+            SceneManager.ChangeScene("GameOver");
         }
     }
 

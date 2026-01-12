@@ -76,7 +76,9 @@ public class GameManager
 
         SceneManager.AddScene("Battle001", new BattleScene001()); // 전투 맵 용 씬 1종
 
-        SceneManager.AddScene("Log", new LogScene());
+        SceneManager.AddScene("Log", new LogScene());   // 로그 용 씬
+
+        SceneManager.AddScene("GameOver", new GameOverScene());
 
         SceneManager.ChangeScene("Title");
 
