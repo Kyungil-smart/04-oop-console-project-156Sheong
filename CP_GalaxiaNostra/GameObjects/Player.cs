@@ -9,7 +9,7 @@ public class Player : GameObject
     public float _maxFuel = 40;
     public float _currentFuel;
 
-    public ObservableProperty<float> Fuel;
+    public ObservableProperty<float> CurrentFuel;
     public ObservableProperty<float> MaxFuel;
     ObservableProperty<float> CurrentFuelRate;
     public string _fuelGauge;
@@ -28,7 +28,7 @@ public class Player : GameObject
     public void Init()
     {
         _currentFuel = 0.5f * _maxFuel;
-        Fuel = new ObservableProperty<float>(_currentFuel);
+        CurrentFuel = new ObservableProperty<float>(_currentFuel);
         MaxFuel = new ObservableProperty<float>(_maxFuel);
         CurrentFuelRate = new ObservableProperty<float>(_currentFuel  / _maxFuel);
 
@@ -79,7 +79,11 @@ public class Player : GameObject
             HandleControl();
         }
 
+        if(CurrentFuel.Value <= 0)
+        {
+            CurrentFuel.Value = 0;
 
+        }
     }
 
 
@@ -131,7 +135,7 @@ public class Player : GameObject
         MapPosition = nextPos;
 
         // 연료 -1
-        Fuel.Value -= 1;
+        CurrentFuel.Value -= 1;
     }
 
     public void Render()
@@ -157,7 +161,7 @@ public class Player : GameObject
 
         Console.SetCursorPosition(0, 12);
         Console.WriteLine();
-        Fuel.Value.ToString().Print(ConsoleColor.Yellow);
+        CurrentFuel.Value.ToString().Print(ConsoleColor.Yellow);
         Console.Write(" / ");
         MaxFuel.Value.ToString().Print(ConsoleColor.Yellow);
 
@@ -209,13 +213,13 @@ public class Player : GameObject
 
     public void Heal(float value)
     {
-        if(Fuel.Value + value >= _maxFuel)
+        if(CurrentFuel.Value + value >= _maxFuel)
         {
-            Fuel.Value = _maxFuel;
+            CurrentFuel.Value = _maxFuel;
         }
         else
         {
-            Fuel.Value += value;
+            CurrentFuel.Value += value;
         }
             
         // Debug.Log(_currentFuel.ToString());
