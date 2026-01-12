@@ -24,7 +24,7 @@ public class Player : GameObject
     protected int PlayerID;
     protected string TrainerName;
     protected virtual TeamType TeamType { get; set; }
-    protected virtual Warship[] pokemonOwned { get; set; }
+    public virtual Warship[] shipOwned { get; set; }
 
     // 생성자 람다식
     public Player(int id, string name)
@@ -264,11 +264,11 @@ public class Player : GameObject
         else if (this.TeamType == TeamType.EnemyTeam01) { Console.ForegroundColor = ConsoleColor.DarkRed; } // 적이면 어두운 빨간색
         Console.WriteLine("--------------------------------------------------");
         Console.WriteLine($"{TrainerName}");
-        for (int i = 0; i < pokemonOwned.Length; i++)
+        for (int i = 0; i < shipOwned.Length; i++)
         {
-            Console.Write($"{pokemonOwned[i].ShipName}급 {pokemonOwned[i].ShipType.ToString()}\t");
+            Console.Write($"{shipOwned[i].ShipName}급 {shipOwned[i].ShipType.ToString()}\t");
             i++;
-            if(i < pokemonOwned.Length) Console.Write($"{pokemonOwned[i].ShipName}급 {pokemonOwned[i].ShipType.ToString()}");
+            if(i < shipOwned.Length) Console.Write($"{shipOwned[i].ShipName}급 {shipOwned[i].ShipType.ToString()}");
             Console.WriteLine();
         }
         Console.WriteLine();

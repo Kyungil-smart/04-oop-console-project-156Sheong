@@ -13,7 +13,7 @@ public class Warship
     protected int BattleID; // 전투 캐릭터 고유 번호, 이건 중첩되면 안됨    
     public int Level { get; set; } = 1;
 
-    public TeamType TeamType;
+    public TeamType MyTeamType { get; set; }
 
     // 실제 값이 저장되는 숨겨진 변수, 자기 자신을 계속 호출하는 무한 루프를 방지하기 위해 추가
     private int _hPCurrent;
@@ -27,6 +27,7 @@ public class Warship
     // 전투 관련 필요 속성
     public int BattlePosition { get; set; } // 함선 전투 맵 포지션
 
+    public bool IsAlive { get; set; } = true;
 
     // 함선 전투 관련 스텟
     // 부모 클래스는 적용 공식을, 자식 클래스는 실제 데이터를 맡음       
@@ -36,14 +37,16 @@ public class Warship
     protected virtual int BaseAtk { get { return 10; } }
     protected virtual int BaseDef { get { return 10; } }
     protected virtual int BaseSpd { get { return 10; } }
-    protected virtual Skill[] CharSkill { get; set; }
+
+
 
     // 실제 적용되는 공식 메서드
-    // (int 형)`능력치` = `기초 능력치` * `(double 형)루트((`현재 레벨` + 9) / 10)`
-    protected int HPMax { get { return (int)(this.BaseHPMax * ((this.Level + 5) / 25)); } }
-    protected int AttackPower { get { return (int)(this.BaseAtk * ((this.Level + 5) / 25)); } }
-    protected int DefencePower { get { return (int)(this.BaseDef * ((this.Level + 5) / 25)); } }
-    protected int BattleSpeed { get { return (int)(this.BaseSpd * ((this.Level + 5) / 25)); } }
+    // (int 형)능력치 = 기초 능력 * ((현재 레벨 + 5) / 25)
+    public int HPMax { get { return (int)(this.BaseHPMax * ((this.Level + 5) / 25)); } }
+    public int AttackPower { get { return (int)(this.BaseAtk * ((this.Level + 5) / 25)); } }
+    public int DefencePower { get { return (int)(this.BaseDef * ((this.Level + 5) / 25)); } }
+    public int BattleSpeed { get { return (int)(this.BaseSpd * ((this.Level + 5) / 25)); } }
+    public virtual Skill CharSkill { get; } = new Skill { SkillPower = 1f };
 
     // 생명력 관리용 메서드
     public int HPCurrent    // 현재 생명력, 0보다 작으면 0으로, 최대 생명력 보다 크면 최대 생명력 수치로 자동 변환되어야 함
@@ -54,7 +57,7 @@ public class Warship
         {
             if (value < 0)  // 생명력 0보다 작으면 0으로
             {
-                IsAlive(false); // 죽음 처리
+                IsAlive = false; // 죽음 처리
                 _hPCurrent = 0;
             }
             else if (value > HPMax)    // 최대 생명력 보다 크면 최대 생명력 수치로
@@ -64,12 +67,13 @@ public class Warship
         }
     }
 
+    /*
     //생존 죽음 관리용 메서드
     public bool IsAlive(bool isAlive)
     {
         return isAlive;
     }
-
+    */
 
     // 생성자, 고유 번호랑 레벨, 팀 만 넣어줄 수 있음
     protected Warship(int id, int lv, TeamType teamType)
@@ -78,7 +82,7 @@ public class Warship
         // 자식 클래스는 오버라이드 해서 포켓몬 클래스가 아닌 자신의 스텟을 가져옴
         this.BattleID = id;
         this.Level = lv;
-        this.TeamType = teamType;
+        this.MyTeamType = teamType;
         this.HPCurrent = HPMax;  // 생성 시 현재 생명력 = 최대 생명력이 됨
     }
 
@@ -119,7 +123,7 @@ public class Warship
         protected override int BaseAtk { get { return 40; } }
         protected override int BaseDef { get { return 40; } }
         protected override int BaseSpd { get { return 130; } }
-        protected override Skill[] CharSkill { get; set; }
+        public override Skill CharSkill { get; } = new Skill { SkillPower = 1f };
     }
 
     public void TakeDamage(int finalDMG)
@@ -152,7 +156,7 @@ public class Azawakh : Warship
     protected override int BaseAtk { get { return 40; } }
     protected override int BaseDef { get { return 40; } }
     protected override int BaseSpd { get { return 140; } }
-    protected override Skill[] CharSkill { get; set; }
+    public override Skill CharSkill { get; } = new Skill { SkillPower = 1f };
 }
 
 // 아보크 자식 클래스
@@ -173,7 +177,7 @@ public class Daring : Warship
     protected override int BaseAtk { get { return 60; } }
     protected override int BaseDef { get { return 30; } }
     protected override int BaseSpd { get { return 120; } }
-    protected override Skill[] CharSkill { get; set; }
+    public override Skill CharSkill { get; } = new Skill { SkillPower = 1f };
 }
 
 // 나인테일
@@ -194,7 +198,7 @@ public class Corsair : Warship
     protected override int BaseAtk { get { return 60; } }
     protected override int BaseDef { get { return 60; } }
     protected override int BaseSpd { get { return 120; } }
-    protected override Skill[] CharSkill { get; set; }
+    public override Skill CharSkill { get; } = new Skill { SkillPower = 1f };
 }
 
 // 고지
@@ -215,7 +219,7 @@ public class Dragon : Warship
     protected override int BaseAtk { get { return 50; } }
     protected override int BaseDef { get { return 90; } }
     protected override int BaseSpd { get { return 110; } }
-    protected override Skill[] CharSkill { get; set; }
+    public override Skill CharSkill { get; } = new Skill { SkillPower = 1f };
 }
 
 // 라이츄 자식 클래스
@@ -244,7 +248,7 @@ public class Chasseurs : Warship
     protected override int BaseAtk { get { return 80; } }
     protected override int BaseDef { get { return 55; } }
     protected override int BaseSpd { get { return 120; } }
-    protected override Skill[] CharSkill { get; set; }
+    public override Skill CharSkill { get; } = new Skill { SkillPower = 1f };
 }
 
 // 파라섹트
@@ -265,7 +269,7 @@ public class Kinshasa : Warship
     protected override int BaseAtk { get { return 70; } }
     protected override int BaseDef { get { return 130; } }
     protected override int BaseSpd { get { return 100; } }
-    protected override Skill[] CharSkill { get; set; }
+    public override Skill CharSkill { get; } = new Skill { SkillPower = 1f };
 }
 
 // 페르시온
@@ -286,7 +290,7 @@ public class Tianjin : Warship
     protected override int BaseAtk { get { return 120; } }
     protected override int BaseDef { get { return 90; } }
     protected override int BaseSpd { get { return 105; } }
-    protected override Skill[] CharSkill { get; set; }
+    public override Skill CharSkill { get; } = new Skill { SkillPower = 1f };
 }
 
 // 골덕
@@ -307,7 +311,7 @@ public class Cairo : Warship
     protected override int BaseAtk { get { return 90; } }
     protected override int BaseDef { get { return 70; } }
     protected override int BaseSpd { get { return 120; } }
-    protected override Skill[] CharSkill { get; set; }
+    public override Skill CharSkill { get; } = new Skill { SkillPower = 1f };
 }
 
 // 윈디
@@ -328,7 +332,7 @@ public class Tokyo : Warship
     protected override int BaseAtk { get { return 80; } }
     protected override int BaseDef { get { return 70; } }
     protected override int BaseSpd { get { return 100; } }
-    protected override Skill[] CharSkill { get; set; }
+    public override Skill CharSkill { get; } = new Skill { SkillPower = 1f };
 }
 
 // 후딘
@@ -349,7 +353,7 @@ public class SaoPaulo : Warship
     protected override int BaseAtk { get { return 120; } }
     protected override int BaseDef { get { return 120; } }
     protected override int BaseSpd { get { return 80; } }
-    protected override Skill[] CharSkill { get; set; }
+    public override Skill CharSkill { get; } = new Skill { SkillPower = 1f };
 }
 
 // 슬리퍼
@@ -370,7 +374,7 @@ public class Benelux : Warship
     protected override int BaseAtk { get { return 160; } }
     protected override int BaseDef { get { return 90; } }
     protected override int BaseSpd { get { return 90; } }
-    protected override Skill[] CharSkill { get; set; }
+    public override Skill CharSkill { get; } = new Skill { SkillPower = 1f };
 }
 
 // 또도가스
@@ -391,7 +395,7 @@ public class Texas : Warship
     protected override int BaseAtk { get { return 140; } }
     protected override int BaseDef { get { return 110; } }
     protected override int BaseSpd { get { return 85; } }
-    protected override Skill[] CharSkill { get; set; }
+    public override Skill CharSkill { get; } = new Skill { SkillPower = 1f };
 }
 
 // 아쿠스타
@@ -412,7 +416,7 @@ public class Rajasthan : Warship
     protected override int BaseAtk { get { return 100; } }
     protected override int BaseDef { get { return 100; } }
     protected override int BaseSpd { get { return 70; } }
-    protected override Skill[] CharSkill { get; set; }
+    public override Skill CharSkill { get; } = new Skill { SkillPower = 1f };
 }
 
 // 켄타로스
@@ -433,7 +437,7 @@ public class Chara : Warship
     protected override int BaseAtk { get { return 160; } }
     protected override int BaseDef { get { return 140; } }
     protected override int BaseSpd { get { return 65; } }
-    protected override Skill[] CharSkill { get; set; }
+    public override Skill CharSkill { get; } = new Skill { SkillPower = 1f };
 }
 
 // 잠만보
@@ -454,7 +458,7 @@ public class Bellatrix : Warship
     protected override int BaseAtk { get { return 240; } }
     protected override int BaseDef { get { return 100; } }
     protected override int BaseSpd { get { return 60; } }
-    protected override Skill[] CharSkill { get; set; }
+    public override Skill CharSkill { get; } = new Skill { SkillPower = 1f };
 }
 
 // 망나뇽
@@ -475,7 +479,7 @@ public class Acrux : Warship
     protected override int BaseAtk { get { return 130; } }
     protected override int BaseDef { get { return 110; } }
     protected override int BaseSpd { get { return 50; } }
-    protected override Skill[] CharSkill { get; set; }
+    public override Skill CharSkill { get; } = new Skill { SkillPower = 1f };
 
 }
 

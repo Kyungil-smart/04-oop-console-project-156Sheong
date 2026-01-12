@@ -9,6 +9,7 @@ public class BattleScene001 : SceneBase
     Player[] enemyPlayer = new PlayerEnemy001[1];
 
     UIDatas uidData = new UIDatas();
+    CombatManager combatManager = new CombatManager();
 
 
     public BattleScene001()
@@ -18,8 +19,8 @@ public class BattleScene001 : SceneBase
 
     public void Init()
     {
-        
 
+        
 
         for (int y = 0; y < _battleField.GetLength(0); y++)
         {
@@ -36,6 +37,8 @@ public class BattleScene001 : SceneBase
     public override void Enter()
     {
         GameManager._player.IsActiveControl = false;
+        combatManager.Init(GameManager._player, enemyPlayer, _battleField);
+
         // 사운드 변경
         SoundManager.ChangeBGM(7);
 
@@ -45,7 +48,7 @@ public class BattleScene001 : SceneBase
 
     public override void Update()
     {
-
+        combatManager.UpdateTurn();
 
     }
 
