@@ -3,22 +3,19 @@ using System.Collections.Generic;
 using System.Text;
 
 
-public class BattleScene001 : SceneBase
+public class BattleScene000 : SceneBase
 {
     public Tile[,] _battleField = new Tile[6, 12];  // 전투 필드 크기
-    Player[] enemyPlayer = new PlayerEnemy001[1];
 
-    UIDatas uidData = new UIDatas();
+    private PCruiser _pCruiser;
 
+    private bool isPlayerTurn = true;
 
-    public BattleScene001()
+    public BattleScene000(PCruiser pCruiser) => Init(pCruiser);
+
+    public void Init(PCruiser pCruiser)
     {
-        
-    }
-
-    public void Init()
-    {
-        
+        _pCruiser = pCruiser;
 
 
         for (int y = 0; y < _battleField.GetLength(0); y++)
@@ -35,10 +32,11 @@ public class BattleScene001 : SceneBase
 
     public override void Enter()
     {
-        // 사운드 변경
-        SoundManager.ChangeBGM(7);
+        _pCruiser.MyField = _battleField;
 
-        enemyPlayer[0] = new PlayerEnemy001(301, "우주 해적");
+        _pCruiser.MapPosition = new Vector(0, 2);
+        _battleField[_pCruiser.MapPosition.Y, _pCruiser.MapPosition.X].OnTileObject = _pCruiser;
+
 
     }
 
@@ -46,27 +44,19 @@ public class BattleScene001 : SceneBase
     {
 
 
+        _pCruiser.Update();
     }
 
     public override void Render()
     {
         PrintField();
-
-        GameManager._player.ShowTrainerStatus();
-        uidData.PrintVSUI();
-
-        foreach (Player p in enemyPlayer)
-        {
-            if (p is PlayerEnemy001 || p is PlayerEnemy002 || p is PlayerEnemy003)
-            {
-                p.ShowTrainerStatus();
-            }
-        }
+        _pCruiser.Render();
     }
 
     public override void Exit()
     {
-
+        _battleField[_pCruiser.MapPosition.Y, _pCruiser.MapPosition.X].OnTileObject = null;
+        _pCruiser.MyField = null;
     }
 
     private void PrintField()
