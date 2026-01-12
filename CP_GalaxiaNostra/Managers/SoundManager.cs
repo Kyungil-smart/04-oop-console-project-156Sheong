@@ -32,6 +32,10 @@ public static class SoundManager
         mp3FilePath.Add("./Resources/BGM08EnemyFleetEngagement.mp3.mp3");
         mp3FilePath.Add("./Resources/BGM09AcrobaticCombat.mp3.mp3");
         mp3FilePath.Add("./Resources/BGM10BattleFormation.mp3");
+        mp3FilePath.Add("./Resources/BGM11DreadnoughtCommander.mp3");
+
+        // 게임 오버 용 음악
+        mp3FilePath.Add("./Resources/BGM12LastBeaconFades.mp3");
 
 
 

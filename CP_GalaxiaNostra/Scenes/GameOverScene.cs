@@ -15,13 +15,15 @@ public class GameOverScene : SceneBase
 
     public void Init()
     {
+
         _GameOverMenu = new MenuList();
-        _GameOverMenu.AddMenu("다시 시작", StartNewMain);
+        _GameOverMenu.AddMenu("게임 종료", QuitGame);
     }
 
 
     public override void Enter()
     {
+        SoundManager.ChangeBGM(12);
         _GameOverMenu.Reset();
 
     }
@@ -65,10 +67,11 @@ public class GameOverScene : SceneBase
 
     }
 
-    public void StartNewMain()
+    public void QuitGame()
     {
         // Console.WriteLine("게임 입장 클릭");
-        SceneManager.ChangeScene("Main");
+        // SceneManager.ChangeScene("Main");
+        GameManager.IsGameRunning = false;
     }
 
 
