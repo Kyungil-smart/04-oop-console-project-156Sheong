@@ -6,12 +6,12 @@ using System.Text;
 public class Player : GameObject
 {
 
-    private float _maxFuel = 40;
+    private float _maxFuel;
     private float _currentFuel;
 
-    public ObservableProperty<float> CurrentFuel;
     public ObservableProperty<float> MaxFuel;
-    ObservableProperty<float> CurrentFuelRate;
+    public ObservableProperty<float> CurrentFuel;
+    public ObservableProperty<float> CurrentFuelRate;
     public string _fuelGauge;
 
 
@@ -27,9 +27,10 @@ public class Player : GameObject
     // 생성자에서 초기화할 목록을 넣는 함수
     public void Init()
     {
+        _maxFuel = 40;
+        MaxFuel = new ObservableProperty<float>(_maxFuel);
         _currentFuel = 0.5f * _maxFuel;
         CurrentFuel = new ObservableProperty<float>(_currentFuel);
-        MaxFuel = new ObservableProperty<float>(_maxFuel);
         CurrentFuelRate = new ObservableProperty<float>(_currentFuel  / _maxFuel);
 
 
