@@ -16,7 +16,7 @@ public class FuelEvent : Item, IInteractable
     public override void UseItemEffect()
     {
         // 아이템 사용효과
-        Owner.Heal(8);  // 힐
+        Owner.GetFuel(8);  // 힐
 
         // 힐 사용후 끊을 것들
         Inventory.RemoveInven(this);
