@@ -221,5 +221,10 @@ public class Player : GameObject
         // Debug.Log(_currentFuel.ToString());
     }
 
+
+    public void Encounter()
+    {
+        SceneManager.ChangeScene("Battle001");
+    }
 }
 
