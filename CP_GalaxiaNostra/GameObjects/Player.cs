@@ -6,8 +6,8 @@ using System.Text;
 public class Player : GameObject
 {
 
-    public float _maxFuel = 40;
-    public float _currentFuel;
+    private float _maxFuel = 40;
+    private float _currentFuel;
 
     public ObservableProperty<float> CurrentFuel;
     public ObservableProperty<float> MaxFuel;

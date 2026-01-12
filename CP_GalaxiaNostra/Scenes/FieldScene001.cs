@@ -29,6 +29,7 @@ public class FieldScene001 : SceneBase
     public override void Enter()
     {
         _player.Field = _field;
+        _player.CurrentFuel.Value = 0.5f * _player.MaxFuel.Value;   // 게임 재시작 이후 연료 넣기 위해 수정
 
         _player.MapPosition = new Vector(4, 4);    // 4.4 위치에서 생성 
         _field[_player.MapPosition.Y, _player.MapPosition.X].OnTileObject = _player;
