@@ -73,7 +73,7 @@ public class GameManager
         SceneManager.AddScene("Title", new TitleScene());   // 타이틀 용 씬
         SceneManager.AddScene("Main", new MainScene()); // 메인 메뉴 용 씬
 
-        SceneManager.AddScene("Field001", new FieldScene001(_player)); // 필드 맵 용 씬 3종
+        SceneManager.AddScene("Field001", new FieldScene001()); // 필드 맵 용 씬 3종
         SceneManager.AddScene("Field002", new FieldScene002());
         SceneManager.AddScene("Field003", new FieldScene003());
 

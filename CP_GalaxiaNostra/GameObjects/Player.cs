@@ -6,8 +6,8 @@ using System.Text;
 public class Player : GameObject
 {
 
-    private float _maxFuel;
-    private float _currentFuel;
+    private float _maxFuel= 40;
+    private float _currentFuel = 20;
 
     public ObservableProperty<float> MaxFuel;
     public ObservableProperty<float> CurrentFuel;
@@ -29,9 +29,14 @@ public class Player : GameObject
     // 생성자 람다식
     public Player(int id, string name)
     {
-        Init();
+        
         this.PlayerID = id;
         this.TrainerName = name;
+        // MaxFuel = new ObservableProperty<float>(_maxFuel);
+        // CurrentFuel = new ObservableProperty<float>(_currentFuel);
+        // CurrentFuelRate = new ObservableProperty<float>(_currentFuel / _maxFuel);
+
+        Init();
     }
 
 
@@ -40,9 +45,9 @@ public class Player : GameObject
     public void Init()
     {
         // 필드 맵 관련
-        _maxFuel = 40;
+        //_maxFuel = 40;
         MaxFuel = new ObservableProperty<float>(_maxFuel);
-        _currentFuel = 0.5f * _maxFuel;
+        //_currentFuel = 0.5f * _maxFuel;
         CurrentFuel = new ObservableProperty<float>(_currentFuel);
         CurrentFuelRate = new ObservableProperty<float>(_currentFuel  / _maxFuel);
 

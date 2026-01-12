@@ -6,14 +6,17 @@ using System.Text;
 public class FieldScene001 : SceneBase
 {
     public Tile[,] _field = new Tile[12, 16];  // 마을 크기
-    private Player _player;
+    // private Player _player;
 
     // 씬에서 플레이어 소환하는 생성자 람다식
-    public FieldScene001(Player player) => Init(player);
+    public FieldScene001()
+    {
+        Init(GameManager._player);
+    }
 
     public void Init(Player player)
     {
-        _player = player;
+        //_player = player;
 
         for (int y = 0; y < _field.GetLength(0); y++)
         {
@@ -31,12 +34,12 @@ public class FieldScene001 : SceneBase
         // 사운드 변경
         SoundManager.ChangeBGM(4);
 
-        _player.Field = _field;
-        _player.CurrentFuel.Value = 0.5f * _player.MaxFuel.Value;   // 게임 재시작 이후 연료 넣기 위해 수정
+        GameManager._player.Field = _field;
+        //GameManager._player.CurrentFuel.Value = 0.5f * GameManager._player.MaxFuel.Value;   // 게임 재시작 이후 연료 넣기 위해 수정
 
-        _player.MapPosition = new Vector(4, 4);    // 4.4 위치에서 생성 
-        _field[_player.MapPosition.Y, _player.MapPosition.X].OnTileObject = _player;
-        _player.IsActiveControl = true;
+        GameManager._player.MapPosition = new Vector(4, 4);    // 4.4 위치에서 생성 
+        _field[GameManager._player.MapPosition.Y, GameManager._player.MapPosition.X].OnTileObject = GameManager._player;
+        GameManager._player.IsActiveControl = true;
         // Console.WriteLine("플레이어 소환");
 
         _field[3, 5].OnTileObject = new FuelEvent() { Name = "Potion01" };
@@ -48,20 +51,20 @@ public class FieldScene001 : SceneBase
 
     public override void Update()
     {
-        _player.Update();
+        GameManager._player.Update();
     }
 
     public override void Render()
     {
         PrintField();
         // PrintFuelGauge();
-        _player.Render();   // 팝업 창 개념이라 나중에 랜더함
+        GameManager._player.Render();   // 팝업 창 개념이라 나중에 랜더함
     }
 
     public override void Exit()
     {
-        _field[_player.MapPosition.Y, _player.MapPosition.X].OnTileObject = null;
-        _player.Field = null;
+        _field[GameManager._player.MapPosition.Y, GameManager._player.MapPosition.X].OnTileObject = null;
+        GameManager._player.Field = null;
     }
 
     private void PrintField()
