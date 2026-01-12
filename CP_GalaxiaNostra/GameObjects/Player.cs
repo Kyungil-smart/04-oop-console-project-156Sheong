@@ -127,6 +127,8 @@ public class Player : GameObject
             if (nextTileObject is IInteractable)
             {
                 (nextTileObject as IInteractable).Interact(this);
+
+                if (Field == null || !IsActiveControl) return;
             }
         }
 

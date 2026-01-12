@@ -39,7 +39,7 @@ public class PCruiser : GameObject
     public ObservableProperty<float> BehaviorPriority;
 
 
-    public Tile[] Field { get; set; }
+    public Tile[,] MyField { get; set; }
     private CharacterMenu _charMenu;
     public bool IsActiveControl { get; private set; }
 
@@ -76,7 +76,7 @@ public class PCruiser : GameObject
 
         Symbol = "🔵";
         IsActiveControl = true;
-        MaxHP.AddListener(SetHPGauge);
+        CurrentHP.AddListener(SetHPGauge);
         _charMenu = new CharacterMenu(this);
     }
 
@@ -89,14 +89,14 @@ public class PCruiser : GameObject
         if (InputManager.GetKey(ConsoleKey.UpArrow) || 
             InputManager.GetKey(ConsoleKey.W))
         {
-            Move(Vector.Up);
+            // Move(Vector.Up);
             _charMenu.SelectUp();
         }
 
         if (InputManager.GetKey(ConsoleKey.DownArrow) || 
             InputManager.GetKey(ConsoleKey.S))
         {
-            Move(Vector.Down);
+            // Move(Vector.Down);
             _charMenu.SelectDown();
         }
 
@@ -140,14 +140,14 @@ public class PCruiser : GameObject
 
     public void Move(Vector direction)
     {
-        if (Field == null || !IsActiveControl) return;
+        if (MyField == null || !IsActiveControl) return;
 
         Vector current = MapPosition;
         Vector nextPos = MapPosition + direction;
 
         // 예외 처리
         // 맵 배열 크기 확인
-        if (nextPos.X < 0 || nextPos.Y < 0 || nextPos.X >= Field.GetLength(1) || nextPos.Y >= Field.GetLength(0))
+        if (nextPos.X < 0 || nextPos.Y < 0 || nextPos.X >= MyField.GetLength(1) || nextPos.Y >= MyField.GetLength(0))
         {
             return;
         }
@@ -160,7 +160,7 @@ public class PCruiser : GameObject
         }
         */
 
-        GameObject nextTileObject = Field[nextPos.X].OnTileObject;
+        GameObject nextTileObject = MyField[nextPos.Y, nextPos.X].OnTileObject;
 
         if (nextTileObject != null)
         {
@@ -171,8 +171,8 @@ public class PCruiser : GameObject
         }
 
 
-        Field[MapPosition.X].OnTileObject = null;
-        Field[nextPos.X].OnTileObject = this;
+        MyField[MapPosition.Y, MapPosition.X].OnTileObject = null;
+        MyField[nextPos.Y, nextPos.X].OnTileObject = this;
         MapPosition = nextPos;
 
     }
