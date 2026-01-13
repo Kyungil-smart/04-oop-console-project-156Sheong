@@ -29,7 +29,7 @@ public class RandomEvent : Item, IInteractable
         }
         else if (number < 9)
         {
-            Owner.GetCoin(7);
+            Owner.GetCoin(5);
         }
         else
         {

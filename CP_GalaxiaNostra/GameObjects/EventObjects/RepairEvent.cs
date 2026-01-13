@@ -16,9 +16,9 @@ public class RepairEvent : Item, IInteractable
     public override void UseItemEffect()
     {
         // 골드 소모 및 아이템 사용효과
-        if(Owner.Coin >= 8)
+        if(Owner.Coin >= 6)
         {
-            Owner.UseCoin(8);
+            Owner.UseCoin(6);
             Owner.GetRepair(12);
 
             // 힐 사용후 끊을 것들

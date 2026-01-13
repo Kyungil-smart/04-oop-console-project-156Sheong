@@ -16,7 +16,7 @@ public class GoldEvent : Item, IInteractable
     public override void UseItemEffect()
     {
         // 골드 획득
-        Owner.GetCoin(14);
+        Owner.GetCoin(10);
 
         // 힐 사용후 끊을 것들
         Inventory.RemoveInven(this);

@@ -7,14 +7,14 @@ using System.Text;
 public class Player : GameObject
 {
 
-    private float _maxFuel= 40;
-    private float _currentFuel = 20;
+    private float _maxFuel= 50;
+    private float _currentFuel = 25;
 
     public ObservableProperty<float> MaxFuel;
     public ObservableProperty<float> CurrentFuel;
     public ObservableProperty<float> CurrentFuelRate;
     public string _fuelGauge;
-    public int Coin { get; set; } = 10;
+    public int Coin { get; set; } = 15;
 
     // 전투 카운트
     public int battleCount = 0;
@@ -191,9 +191,10 @@ public class Player : GameObject
         Console.SetCursorPosition(0, 20);
         _fuelGauge.Print(ConsoleColor.Yellow);
         */
+        Console.SetCursorPosition(0, 12);
+        Console.WriteLine("방향키 및 WASD 이동");
 
-        Console.SetCursorPosition(0, 13);
-        Console.WriteLine();
+        Console.SetCursorPosition(0, 13);        
         Console.Write(" 남은 연료 : ");
         CurrentFuel.Value.ToString().Print(ConsoleColor.DarkCyan);
         Console.Write(" / ");
