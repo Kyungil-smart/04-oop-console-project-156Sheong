@@ -67,7 +67,7 @@ public class MenuList
             _maxLength = textWidth;
         }
 
-        _outline.Width = _maxLength + 8;
+        _outline.Width = _maxLength + 12;
         _outline.Height++;
     }
 
@@ -88,7 +88,7 @@ public class MenuList
 
         if (_maxLength != max) _maxLength = max;
 
-        _outline.Width = _maxLength + 8;
+        _outline.Width = _maxLength + 12;
         _outline.Height++;
 
 
