@@ -178,7 +178,11 @@ public class CombatManager
             GameManager._player.shipOwned[a].AddLevel(GameManager._player.playerTeamLevel);
         }
 
-        if(GameManager._player.battleCount >= 15) SceneManager.ChangeScene("GameEnd") ;
+        if (GameManager._player.battleCount >= 15)
+        {
+            SceneManager.ChangeScene("GameEnd");
+            return;
+        }
 
         SceneManager.ChangeScene("Field001");
 
