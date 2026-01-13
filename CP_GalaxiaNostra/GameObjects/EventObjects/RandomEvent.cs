@@ -16,16 +16,20 @@ public class RandomEvent : Item, IInteractable
     public override void UseItemEffect()
     {
         Random randNumber = new Random();
-        int number = randNumber.Next(0, 10);
+        int number = randNumber.Next(0, 12);
 
         // 아이템 사용효과 (랜덤)
-        if(number <= 3)
+        if(number < 3)
         {
             Owner.GetFuel(8);
         }
-        else if (number <= 6)
+        else if (number < 6)
         {
             Owner.GetRepair(6);
+        }
+        else if (number < 9)
+        {
+            Owner.GetCoin(7);
         }
         else
         {

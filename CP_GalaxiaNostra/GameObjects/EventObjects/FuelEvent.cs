@@ -9,7 +9,7 @@ public class FuelEvent : Item, IInteractable
 
     private void Init()
     {
-        Symbol = "💛";
+        Symbol = "🛢️";
     }
 
 
