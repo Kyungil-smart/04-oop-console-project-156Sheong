@@ -18,6 +18,8 @@ public class Player : GameObject
 
     // 전투 카운트
     public int battleCount = 0;
+
+    public int playerTeamLevel = 10;
     
 
     public Tile[,] Field { get; set; }
@@ -26,7 +28,7 @@ public class Player : GameObject
 
     // 전투 관련
     protected int PlayerID;
-    protected string TrainerName;
+    protected string FleetName;
     protected virtual TeamType TeamType { get; set; }
     public virtual Warship[] shipOwned { get; set; }
 
@@ -35,7 +37,7 @@ public class Player : GameObject
     {
         
         this.PlayerID = id;
-        this.TrainerName = name;
+        this.FleetName = name;
         // MaxFuel = new ObservableProperty<float>(_maxFuel);
         // CurrentFuel = new ObservableProperty<float>(_currentFuel);
         // CurrentFuelRate = new ObservableProperty<float>(_currentFuel / _maxFuel);
@@ -314,7 +316,7 @@ public class Player : GameObject
         if (this.TeamType == TeamType.Player) { Console.ForegroundColor = ConsoleColor.Cyan; }  // 플레이어면 시안색
         else if (this.TeamType == TeamType.EnemyTeam01) { Console.ForegroundColor = ConsoleColor.DarkRed; } // 적이면 어두운 빨간색
         Console.WriteLine("--------------------------------------------------");
-        Console.WriteLine($"{TrainerName}");
+        Console.WriteLine($"{FleetName}\tLv. {playerTeamLevel}");
         for (int i = 0; i < shipOwned.Length; i++)
         {
             Console.Write($"{shipOwned[i].ShipName}급  {shipOwned[i].HPCurrent} / {shipOwned[i].HPMax}\t");

@@ -134,8 +134,17 @@ public class CombatManager
         int finalDMG = (int)(40 * attacker.CharSkill.SkillPower * (attacker.AttackPower + 1f) / (target.DefencePower + 1f));
 
         target.TakeDamage(finalDMG);
-        Debug.Log($"{attacker.MyTeamType} {attacker.ShipName}의 공격 -> {target.ShipName}가 피격 | 거리 : {Math.Abs(attacker.BattlePosition - target.BattlePosition)}");
-        Debug.Log($"피해량 :{finalDMG} | {target.ShipName} 남은 생명력 : {target.HPCurrent}");
+
+        Console.SetCursorPosition(1, 19);
+        Console.WriteLine("                                                                                                 "); // 이 라인 클리어
+        Console.WriteLine("                                                                                                 ");
+        Console.SetCursorPosition(1, 19);
+        Console.WriteLine($"{attacker.MyTeamType} {attacker.ShipName}의 공격 -> {target.ShipName}가 피격 | 거리 : {Math.Abs(attacker.BattlePosition - target.BattlePosition)}");
+        Console.SetCursorPosition(3, 20);
+        Console.WriteLine($"피해량 :{finalDMG} | {target.ShipName} 남은 생명력 : {target.HPCurrent}");
+        // Debug.Log($"{attacker.MyTeamType} {attacker.ShipName}의 공격 -> {target.ShipName}가 피격 | 거리 : {Math.Abs(attacker.BattlePosition - target.BattlePosition)}");
+        // Debug.Log($"피해량 :{finalDMG} | {target.ShipName} 남은 생명력 : {target.HPCurrent}");
+        Console.ReadLine();
     }
 
 
@@ -160,7 +169,14 @@ public class CombatManager
             GameManager._player.GetCoin(5);
         }
 
-        // Player.battleCount++;
+        GameManager._player.battleCount++;
+        GameManager._player.playerTeamLevel++;
+
+        // 전투 승리 시 레벨도 상승
+        for(int a = 0; a < GameManager._player.shipOwned.Length; a++)
+        {
+            GameManager._player.shipOwned[a].AddLevel(GameManager._player.playerTeamLevel);
+        }
 
         SceneManager.ChangeScene("Field001");
 

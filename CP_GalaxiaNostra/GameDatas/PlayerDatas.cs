@@ -26,14 +26,14 @@ public class YouPlayer : Player
 public class PlayerEnemy001 : Player
 {
     protected override TeamType TeamType { get; set; } = TeamType.EnemyTeam01;
-    public override Warship[] shipOwned { get; set; } = new Warship[3];
+    public override Warship[] shipOwned { get; set; } = new Warship[2];
 
     public PlayerEnemy001(int id, string name) : base(id, name)
     {
         // 생성 시 포켓몬 3마리 자동 생성
-        shipOwned[0] = new Orca(3001, 10, TeamType.EnemyTeam01);
-        shipOwned[1] = new Azawakh(3002, 10, TeamType.EnemyTeam01);
-        shipOwned[2] = new Daring(3003, 10, TeamType.EnemyTeam01);
+        shipOwned[0] = new Orca(3001, 9, TeamType.EnemyTeam01);
+        shipOwned[1] = new Azawakh(3002, 9, TeamType.EnemyTeam01);
+        // shipOwned[2] = new Daring(3003, 10, TeamType.EnemyTeam01);
     }
 }
 
@@ -46,24 +46,25 @@ public class PlayerEnemy002 : Player
     {
         TeamType = TeamType.EnemyTeam01;
         // 생성 시 포켓몬 3마리 자동 생성
-        shipOwned[0] = new Daring(3001, 10, TeamType.EnemyTeam01);
-        shipOwned[1] = new Dragon(3002, 10, TeamType.EnemyTeam01);
-        shipOwned[2] = new Tianjin(3003, 10, TeamType.EnemyTeam01);
+        shipOwned[0] = new Daring(3001, 12, TeamType.EnemyTeam01);
+        shipOwned[1] = new Dragon(3002, 12, TeamType.EnemyTeam01);
+        shipOwned[2] = new Tianjin(3003, 12, TeamType.EnemyTeam01);
     }
 }
 
 public class PlayerEnemy003 : Player
 {
     protected override TeamType TeamType { get; set; } = TeamType.EnemyTeam01;
-    public override Warship[] shipOwned { get; set; } = new Warship[3];
+    public override Warship[] shipOwned { get; set; } = new Warship[4];
 
     public PlayerEnemy003(int id, string name) : base(id, name)
     {
         TeamType = TeamType.EnemyTeam01;
         // 생성 시 포켓몬 6마리 자동 생성
-        shipOwned[0] = new Corsair(3001, 10, TeamType.EnemyTeam01);
-        shipOwned[1] = new Tokyo(3002, 10, TeamType.EnemyTeam01);
-        shipOwned[2] = new Benelux(3003, 10, TeamType.EnemyTeam01);
+        shipOwned[0] = new Corsair(3001, 15, TeamType.EnemyTeam01);
+        shipOwned[1] = new Tokyo(3002, 15, TeamType.EnemyTeam01);
+        shipOwned[2] = new Benelux(3003, 15, TeamType.EnemyTeam01);
+        shipOwned[3] = new Texas(3003, 15, TeamType.EnemyTeam01);
     }
 }
 

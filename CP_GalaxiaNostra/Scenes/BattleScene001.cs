@@ -6,7 +6,7 @@ using System.Text;
 public class BattleScene001 : SceneBase
 {
     public Tile[,] _battleField = new Tile[6, 12];  // 전투 필드 크기
-    Player[] enemyPlayer = new PlayerEnemy001[1];
+    Player[] enemyPlayer = new Player[1];
 
     UIDatas uidData = new UIDatas();
     CombatManager combatManager = new CombatManager();
@@ -41,7 +41,19 @@ public class BattleScene001 : SceneBase
         GameManager._player.IsActiveControl = false;
 
         // 적이 먼저 스폰되어야 오류 안 생김
-        enemyPlayer[0] = new PlayerEnemy001(301, "우주 해적");
+        if(GameManager._player.battleCount < 4)
+        {
+            enemyPlayer[0] = new PlayerEnemy001(301, "무명 우주 해적");
+        }
+        else if(GameManager._player.battleCount < 8)
+        {
+            enemyPlayer[0] = new PlayerEnemy002(302, "이름난 우주 해적");
+        }
+        else
+        {
+            enemyPlayer[0] = new PlayerEnemy003(303, "악명 높은 우주 해적");
+        }
+
         combatManager.EnterInit(GameManager._player, enemyPlayer, _battleField);
 
         // 사운드 변경
@@ -72,7 +84,7 @@ public class BattleScene001 : SceneBase
                 p.ShowFleetStatus();
             }
         }
-        Console.WriteLine("자동 전투 중");
+        Console.WriteLine("자동 전투 중 (아무 키나 누르세요.)");
     }
 
     public override void Exit()

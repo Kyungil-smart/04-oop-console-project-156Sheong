@@ -94,40 +94,10 @@ public class Warship
         // Console.WriteLine("--------------------------------------------------");
     }
 
-
-    // 피죤투 자식 클래스
-    public class Orca : Warship
-    {
-        /*
-        // 내부에서 사용할 밸런스 계수 (사용 안함)
-        private const int BaseHP = 83;
-        private const int BaseAtkPower = 75;
-        private const int BaseDefPower = 72;
-        private const int BaseBattleSpd = 101;
-        */
-
-        // 자식 클래스 생성자
-        public Orca(int id, int lv, TeamType teamType) : base(id, lv, teamType)
-        {
-        }
-
-        // 자식 클래스 포켓몬을 구분하기 위한 기호, set을 없애 바뀌는 것을 방지
-        protected override int ShipID { get { return 18; } }
-        public override string ShipName { get { return "범고래"; } }
-        public override ShipType ShipType { get { return ShipType.Corvette; } }
-
-        // 자식 클래스의 스텟, set을 없애 바뀌는 것을 방지
-        protected override int BaseHPMax { get { return 40; } }
-        protected override int BaseAtk { get { return 40; } }
-        protected override int BaseDef { get { return 40; } }
-        protected override int BaseSpd { get { return 130; } }
-        public override Skill CharSkill { get; } = new Skill { SkillPower = 1f };
-    }
-
     public void TakeDamage(int finalDMG)
     {
         // (int)피해량 공식 = 40 * {공격자.스킬 위력} * ({공격자.공격력} + 1) / ({피격자.방어력} + 1), 1은 분모 0을 방지하기 위함
-        
+
 
         HPCurrent -= finalDMG;
     }
@@ -138,7 +108,45 @@ public class Warship
         HPCurrent += finalDMG;
     }
 
+    public void AddLevel(int value)
+    {
+        Level = value;
+    }
 }
+
+
+
+
+// 피죤투 자식 클래스
+public class Orca : Warship
+{
+    /*
+    // 내부에서 사용할 밸런스 계수 (사용 안함)
+    private const int BaseHP = 83;
+    private const int BaseAtkPower = 75;
+    private const int BaseDefPower = 72;
+    private const int BaseBattleSpd = 101;
+    */
+
+    // 자식 클래스 생성자
+    public Orca(int id, int lv, TeamType teamType) : base(id, lv, teamType)
+    {
+    }
+
+    // 자식 클래스 포켓몬을 구분하기 위한 기호, set을 없애 바뀌는 것을 방지
+    protected override int ShipID { get { return 18; } }
+    public override string ShipName { get { return "범고래"; } }
+    public override ShipType ShipType { get { return ShipType.Corvette; } }
+
+    // 자식 클래스의 스텟, set을 없애 바뀌는 것을 방지
+    protected override int BaseHPMax { get { return 40; } }
+    protected override int BaseAtk { get { return 40; } }
+    protected override int BaseDef { get { return 40; } }
+    protected override int BaseSpd { get { return 130; } }
+    public override Skill CharSkill { get; } = new Skill { SkillPower = 1f };
+}
+
+
 
 // 깨비드릴조 자식 클래스
 public class Azawakh : Warship
