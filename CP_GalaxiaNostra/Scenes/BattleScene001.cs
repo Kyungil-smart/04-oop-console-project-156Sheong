@@ -72,6 +72,7 @@ public class BattleScene001 : SceneBase
                 p.ShowFleetStatus();
             }
         }
+        Console.WriteLine("자동 전투 중");
     }
 
     public override void Exit()
