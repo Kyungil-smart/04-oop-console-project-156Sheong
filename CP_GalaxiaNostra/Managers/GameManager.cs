@@ -9,7 +9,9 @@ public class GameManager
     public static bool IsGameRunning {  get; set; }    // 게임 실행 여부를 구분하는 전역 변수, 사용하기 쉽게 public 으로 열어둠
 
     public static Player _player = new YouPlayer(101, "당신의 함대");
-    
+
+
+
     // private PCruiser _pcruiser;
 
     // 게임을 실행하는 함수
@@ -28,13 +30,13 @@ public class GameManager
 
             // 키 입력 받기
             InputManager.GetUserInput();
-            // SoundManager.ChangeBGM(int.Parse(Console.ReadLine())); // 배경음 테스트 용
-
+            
+            /*
             if (InputManager.GetKey(ConsoleKey.Tab))
             {
                 SceneManager.ChangeScene("Log");
             }
-
+            */
 
             // 데이터 처리
 
