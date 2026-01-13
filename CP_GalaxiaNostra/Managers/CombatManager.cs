@@ -145,6 +145,8 @@ public class CombatManager
     public void Victory()
     {
         GameManager._player.GetFuel(15);
+
+  
         SceneManager.ChangeScene("Field001");
         
     }

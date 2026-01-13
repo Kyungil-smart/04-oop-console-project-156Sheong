@@ -188,7 +188,7 @@ public class Player : GameObject
         _fuelGauge.Print(ConsoleColor.Yellow);
         */
 
-        Console.SetCursorPosition(0, 12);
+        Console.SetCursorPosition(0, 16);
         Console.WriteLine();
         CurrentFuel.Value.ToString().Print(ConsoleColor.Yellow);
         Console.Write(" / ");
