@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 // 필드 맵을 돌아다닐 플레이어, 전투 맵에는 등장 X
@@ -13,8 +14,11 @@ public class Player : GameObject
     public ObservableProperty<float> CurrentFuel;
     public ObservableProperty<float> CurrentFuelRate;
     public string _fuelGauge;
+    public int Coin { get; set; } = 10;
 
-
+    // 전투 카운트
+    public int battleCount = 0;
+    
 
     public Tile[,] Field { get; set; }
     private Inventory _inventory;
@@ -191,9 +195,12 @@ public class Player : GameObject
         Console.SetCursorPosition(0, 13);
         Console.WriteLine();
         Console.Write(" 남은 연료 : ");
-        CurrentFuel.Value.ToString().Print(ConsoleColor.Yellow);
+        CurrentFuel.Value.ToString().Print(ConsoleColor.DarkCyan);
         Console.Write(" / ");
-        MaxFuel.Value.ToString().Print(ConsoleColor.Yellow);
+        MaxFuel.Value.ToString().Print(ConsoleColor.DarkCyan);
+        Console.Write("\t");
+        Console.Write("재화 : ");
+        Coin.ToString().Print(ConsoleColor.DarkYellow);
         Console.WriteLine();
         ShowFleetStatus();
         
@@ -250,6 +257,13 @@ public class Player : GameObject
 
 
     // 인카운터 효과 모음
+    public void UseCoin(int value)
+    {
+        if (Coin - value < 0) Coin = 0;
+        else Coin -= value;
+    }
+
+
     public void GetFuel(float value)
     {
         if(CurrentFuel.Value + value >= _maxFuel)

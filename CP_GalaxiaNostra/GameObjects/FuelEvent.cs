@@ -15,15 +15,19 @@ public class FuelEvent : Item, IInteractable
 
     public override void UseItemEffect()
     {
-        // 아이템 사용효과
-        Owner.GetFuel(8);  // 힐
+        // 골드 소모 및 아이템 사용효과
+        if (Owner.Coin >= 6)
+        {
+            Owner.UseCoin(6);
+            Owner.GetFuel(8);  // 힐
 
-        // 힐 사용후 끊을 것들
-        Inventory.RemoveInven(this);
-        Inventory = null;
-        Owner = null;
+            // 힐 사용후 끊을 것들
+            Inventory.RemoveInven(this);
+            Inventory = null;
+            Owner = null;
 
-        Debug.Log("Use Potion");
+            Debug.Log("Use Potion");
+        }
     }
 
     public void Interact(Player player)
