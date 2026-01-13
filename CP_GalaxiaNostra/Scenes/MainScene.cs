@@ -17,9 +17,9 @@ public class MainScene : SceneBase
     {
         _MainMenu = new MenuList();
         _MainMenu.AddMenu(" 새 게임  ", StartNewGame);
-        _MainMenu.AddMenu(" 불러오기 ", LoadGame);
-        _MainMenu.AddMenu(" 게임 옵션", ViewOption);
-        _MainMenu.AddMenu(" 크레딧   ", ViewCredits);
+        _MainMenu.AddMenu(" 불러오기(준비중)", LoadGame);
+        _MainMenu.AddMenu(" 게임 옵션(준비중)", ViewOption);
+        _MainMenu.AddMenu(" 크레딧(준비중)", ViewCredits);
         _MainMenu.AddMenu(" 게임 종료", QuitGame);
     }
 

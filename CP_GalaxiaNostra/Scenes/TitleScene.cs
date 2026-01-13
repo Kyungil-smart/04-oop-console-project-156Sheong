@@ -32,10 +32,14 @@ public class TitleScene : SceneBase
     public override void Render()
     {
         // 게임 세계관 출력 -> 추후 다른 방법으로 바꿀 예정
+        Console.SetCursorPosition(1, 1);
         Console.WriteLine("자유는 어디서 오는가?");
         Console.WriteLine();
+        Console.SetCursorPosition(1, 4);
         Console.WriteLine("체제인가? 공간인가?");
+        Console.SetCursorPosition(1, 6);
         Console.WriteLine("개인의 신분이나 물질적 풍요인가?");
+        Console.SetCursorPosition(1, 8);
         Console.WriteLine("아니면 내면의 상태인가?");
     }
 
