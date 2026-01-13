@@ -27,16 +27,13 @@ public class FieldScene001 : SceneBase
 
     public void CreatMapSize()
     {
-        numberA = 10 + randNumberA.Next(0, 5);
-        numberB = 12 + randNumberB.Next(0, 6);
+        numberA = 10 + randNumberA.Next(0, 3);
+        numberB = 15 + randNumberB.Next(0, 5);
 
         _field = new Tile[numberA, numberB];  // 마을 크기
 
 
     }
-
-
-
 
 
     public void Init(Player player)
@@ -67,6 +64,7 @@ public class FieldScene001 : SceneBase
         }
 
 
+        // 아래는 각종 필드 오브젝트 생성
         numberA1 = randNumberA.Next(1, numberA / 2);
         numberA2 = randNumberA.Next(1 + numberA / 2, numberA - 1);
         numberB1 = randNumberB.Next(1, numberB / 2);
@@ -76,14 +74,33 @@ public class FieldScene001 : SceneBase
         {
             Random randNumberC = new Random();
             Random randNumberD = new Random();
-            int numberX = randNumberC.Next(1, numberA - 1);
-            int numberY = randNumberD.Next(1, numberA - 1);
+            int numberX1 = randNumberC.Next(1, numberA - 1);
+            int numberY1 = randNumberD.Next(1, numberB - 1);
 
-            _field[numberX, numberY].OnTileObject = new FuelEvent() { Name = $"Potion{i}" };
+            _field[numberX1, numberY1].OnTileObject = new FuelEvent() { Name = $"Potion{i}" };
         }
 
-        _field[numberA2, numberB1].OnTileObject = new RandomEvent() { Name = "Random01" };
-        _field[numberA2, numberB2].OnTileObject = new EnemyEvent() { Name = "Enemy01" };
+        for (int j = 0; j < 2; j++)
+        {
+            Random randNumberE = new Random();
+            Random randNumberF = new Random();
+            int numberX2 = randNumberE.Next(1, numberA - 1);
+            int numberY2 = randNumberF.Next(1, numberB - 1);
+
+            Random randNumber = new Random();
+            int number1 = randNumber.Next(0, 10);
+
+            if (number1 <= 4)
+            {
+                _field[numberX2, numberY2].OnTileObject = new RandomEvent() { Name = "Random01" };
+            }
+            else
+            {
+                _field[numberX2, numberY2].OnTileObject = new RepairEvent() { Name = "Repair01" };
+            }
+        }
+        
+        _field[numberA1, numberB2].OnTileObject = new EnemyEvent() { Name = "Enemy01" };
     }
 
 
