@@ -61,7 +61,7 @@ public class BattleScene001 : SceneBase
     {
         PrintField();
 
-        GameManager._player.ShowTrainerStatus();
+        GameManager._player.ShowFleetStatus();
         uidData.PrintVSUI();
 
         // 나중에 복수의 적 함대가 등장할 수도 있음
@@ -69,7 +69,7 @@ public class BattleScene001 : SceneBase
         {
             if (p is PlayerEnemy001 || p is PlayerEnemy002 || p is PlayerEnemy003)
             {
-                p.ShowTrainerStatus();
+                p.ShowFleetStatus();
             }
         }
     }
