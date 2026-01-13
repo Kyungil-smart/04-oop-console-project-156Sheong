@@ -8,7 +8,7 @@ public class GameManager
 {
     public static bool IsGameRunning {  get; set; }    // 게임 실행 여부를 구분하는 전역 변수, 사용하기 쉽게 public 으로 열어둠
 
-    public static Player _player = new YouPlayer(101, "당신");
+    public static Player _player = new YouPlayer(101, "당신의 함대");
     
     // private PCruiser _pcruiser;
 
