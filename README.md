@@ -1,1 +1,21 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=22157914&assignment_repo_type=AssignmentRepo)
+# 프로젝트 명 : CP_GalaxiaNostra
+# 게임 명 : 갤럭시아 노스트라
+# 개발자 : 한성우
+
+## A. 게임 소개
+- 자신의 우주 함대로 필드 맵을 돌아다니면서 우주 해적을 잡는 게임
+- 우주 해적은 **경고 표시(🚨)** 로 나타나며, 해당 그리드와 충돌 시 전투 돌입
+- 전투는 전투 맵에서 이뤄지며, 여러 척의 아군 함선과 적군 함선이 속도가 빠른 순서대로 번갈아가며 거리 상 가까운 적을 공격
+- 필드 맵에는 **수리(⚓)**, **연료(🛢️)**, **재화(💰)**, **랜덤(❓)** 등 각종 오브젝트 배치됨
+  
+
+## B. 승리 패배 조건
+- **승리**
+  - 17회 이상 전투 승리 시, 게임이 클리어 되며 데모 버젼이 종료
+- **패배**
+  - 필드 맵에서 연료가 0 이하가 되면 게임 오버
+  - 적에게 아군 함선이 모두 제거되면 게임 오버
+
+
+## C. 기타 사항
+- 계속 업데이트 할 예정
