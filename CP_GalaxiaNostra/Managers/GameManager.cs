@@ -84,6 +84,7 @@ public class GameManager
         SceneManager.AddScene("Log", new LogScene());   // 로그 용 씬
 
         SceneManager.AddScene("GameOver", new GameOverScene());
+        SceneManager.AddScene("GameEnd", new EndScene());
 
         SceneManager.ChangeScene("Title");
 
