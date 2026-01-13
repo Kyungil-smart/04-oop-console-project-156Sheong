@@ -15,15 +15,29 @@ public class RandomEvent : Item, IInteractable
 
     public override void UseItemEffect()
     {
-        // 아이템 사용효과
-        // Owner.Heal(10);  // 힐
+        Random randNumber = new Random();
+        int number = randNumber.Next(0, 10);
 
-        // 힐 사용후 끊을 것들
-        Inventory.RemoveInven(this);
+        // 아이템 사용효과 (랜덤)
+        if(number <= 3)
+        {
+            Owner.GetFuel(8);
+        }
+        else if (number <= 6)
+        {
+            Owner.GetRepair(6);
+        }
+        else
+        {
+            Owner.Encounter();
+        }
+
+            // 힐 사용후 끊을 것들
+            Inventory.RemoveInven(this);
         Inventory = null;
         Owner = null;
 
-        Debug.Log("Use Potion");
+        
     }
 
     public void Interact(Player player)

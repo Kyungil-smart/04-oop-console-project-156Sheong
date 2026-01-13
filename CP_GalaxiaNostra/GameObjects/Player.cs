@@ -188,12 +188,20 @@ public class Player : GameObject
         _fuelGauge.Print(ConsoleColor.Yellow);
         */
 
-        Console.SetCursorPosition(0, 16);
+        Console.SetCursorPosition(0, 13);
         Console.WriteLine();
+        Console.Write(" 남은 연료 : ");
         CurrentFuel.Value.ToString().Print(ConsoleColor.Yellow);
         Console.Write(" / ");
         MaxFuel.Value.ToString().Print(ConsoleColor.Yellow);
-
+        Console.WriteLine();
+        ShowFleetStatus();
+        
+        for (int i = 0; i < shipOwned.Length; i++)
+        {
+            shipOwned[i].ShowShipStatus();
+        }
+        
     }
     
 
@@ -240,6 +248,8 @@ public class Player : GameObject
         */
     }
 
+
+    // 인카운터 효과 모음
     public void GetFuel(float value)
     {
         if(CurrentFuel.Value + value >= _maxFuel)
@@ -254,16 +264,31 @@ public class Player : GameObject
         // Debug.Log(_currentFuel.ToString());
     }
 
-
     public void Encounter()
     {
         SceneManager.ChangeScene("Battle001");
     }
 
+    public void GetRepair(int value)
+    {
+        foreach (Warship ship in shipOwned)
+        {
+            if (ship.IsAlive == true)
+            {
+                ship.TakeRepair(value);
+            }
+            else
+            {
+                // 함선 부활 시 절반만 치료
+                ship.IsAlive = true;
+                ship.TakeRepair(value / 2);
+            }
+        }
+    }
 
 
     // 전투 관련 메서드 모음
-    public void ShowTrainerStatus()
+    public void ShowFleetStatus()
     {
         if (this.TeamType == TeamType.Player) { Console.ForegroundColor = ConsoleColor.Cyan; }  // 플레이어면 시안색
         else if (this.TeamType == TeamType.EnemyTeam01) { Console.ForegroundColor = ConsoleColor.DarkRed; } // 적이면 어두운 빨간색
@@ -271,12 +296,12 @@ public class Player : GameObject
         Console.WriteLine($"{TrainerName}");
         for (int i = 0; i < shipOwned.Length; i++)
         {
-            Console.Write($"{shipOwned[i].ShipName}급 {shipOwned[i].ShipType.ToString()}\t");
+            Console.Write($"{shipOwned[i].ShipName}급  {shipOwned[i].HPCurrent} / {shipOwned[i].HPMax}\t");
+
             i++;
-            if(i < shipOwned.Length) Console.Write($"{shipOwned[i].ShipName}급 {shipOwned[i].ShipType.ToString()}");
+            if(i < shipOwned.Length) Console.Write($"{shipOwned[i].ShipName}급  {shipOwned[i].HPCurrent} / {shipOwned[i].HPMax}");
             Console.WriteLine();
         }
-        Console.WriteLine();
         Console.WriteLine("--------------------------------------------------");
         Console.ResetColor();
         /*

@@ -87,13 +87,11 @@ public class Warship
     }
 
     // 능력치 출력
-    public void ShowPokemonStatus()
+    public void ShowShipStatus()
     {
-        Console.WriteLine("--------------------------------------------------");
-        Console.WriteLine($"  {ShipName}급 {ShipType.ToString()}  |  Lv.{Level}");
-        Console.WriteLine($"  HP: {HPCurrent} / {HPMax}  |  방어력: {DefencePower}");
-        Console.WriteLine($"  공격력: {AttackPower}  |  전투 속도: {BattleSpeed}");
-        Console.WriteLine("--------------------------------------------------");
+        // Console.WriteLine("--------------------------------------------------");
+        Console.WriteLine($"  {ShipName}급 {ShipType.ToString()}  |  Lv.{Level}  |  방어력: {DefencePower} | 공격력: {AttackPower}  |  전투 속도: {BattleSpeed}");
+        // Console.WriteLine("--------------------------------------------------");
     }
 
 
@@ -134,7 +132,11 @@ public class Warship
         HPCurrent -= finalDMG;
     }
 
+    public void TakeRepair(int finalDMG)
+    {
 
+        HPCurrent += finalDMG;
+    }
 
 }
 
