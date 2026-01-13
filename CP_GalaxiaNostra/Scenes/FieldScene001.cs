@@ -27,7 +27,7 @@ public class FieldScene001 : SceneBase
 
     public void CreatMapSize()
     {
-        numberA = 10 + randNumberA.Next(0, 3);
+        numberA = 9 + randNumberA.Next(0, 3);
         numberB = 15 + randNumberB.Next(0, 5);
 
         _field = new Tile[numberA, numberB];  // 마을 크기
