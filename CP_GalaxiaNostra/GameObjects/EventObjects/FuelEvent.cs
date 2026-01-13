@@ -19,7 +19,7 @@ public class FuelEvent : Item, IInteractable
         if (Owner.Coin >= 6)
         {
             Owner.UseCoin(6);
-            Owner.GetFuel(8);  // 힐
+            Owner.GetFuel(12);  // 힐
 
             // 힐 사용후 끊을 것들
             Inventory.RemoveInven(this);

@@ -147,17 +147,17 @@ public class CombatManager
         Random randRewardNumA = new Random();
         Random randRewardNumB = new Random();
         Random randRewardNumC = new Random();
-        int reNumberA = randRewardNumA.Next(0, 5);
-        int reNumberB = randRewardNumB.Next(0, 4);
+        int reNumberA = randRewardNumA.Next(0, 7);
+        int reNumberB = randRewardNumB.Next(0, 6);
         int reNumberC = randRewardNumC.Next(0, 12);
 
         // 랜덤 전리품
-        if (reNumberC < 4) GameManager._player.GetFuel(4 + reNumberA);
-        else if (reNumberC < 8) GameManager._player.GetCoin(3 + reNumberB);
+        if (reNumberC < 4) GameManager._player.GetFuel(6 + reNumberA);
+        else if (reNumberC < 8) GameManager._player.GetCoin(5 + reNumberB);
         else
         {
-            GameManager._player.GetFuel(4);
-            GameManager._player.GetCoin(3);
+            GameManager._player.GetFuel(6);
+            GameManager._player.GetCoin(5);
         }
 
         // Player.battleCount++;

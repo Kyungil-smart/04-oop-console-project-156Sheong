@@ -21,7 +21,7 @@ public class RandomEvent : Item, IInteractable
         // 아이템 사용효과 (랜덤)
         if(number < 3)
         {
-            Owner.GetFuel(8);
+            Owner.GetFuel(6);
         }
         else if (number < 6)
         {

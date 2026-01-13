@@ -71,7 +71,7 @@ public class FieldScene001 : SceneBase
         numberB2 = randNumberB.Next(1 + numberB / 2, numberB - 1);
 
         
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 3; i++)
         {
             Random randNumberC = new Random();
             Random randNumberD = new Random();
