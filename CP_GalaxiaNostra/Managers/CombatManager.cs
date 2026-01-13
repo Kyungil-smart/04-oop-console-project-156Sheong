@@ -144,9 +144,11 @@ public class CombatManager
     // 승리 매서드
     public void Victory()
     {
+        // 전리품
+        GameManager._player.GetCoin(6);
         GameManager._player.GetFuel(15);
+        // Player.battleCount++;
 
-  
         SceneManager.ChangeScene("Field001");
         
     }

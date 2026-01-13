@@ -257,6 +257,12 @@ public class Player : GameObject
 
 
     // 인카운터 효과 모음
+    public void GetCoin(int value)
+    {
+        Coin += value;
+    }
+
+
     public void UseCoin(int value)
     {
         if (Coin - value < 0) Coin = 0;

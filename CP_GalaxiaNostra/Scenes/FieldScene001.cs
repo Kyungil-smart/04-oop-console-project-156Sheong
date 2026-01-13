@@ -70,7 +70,8 @@ public class FieldScene001 : SceneBase
         numberB1 = randNumberB.Next(1, numberB / 2);
         numberB2 = randNumberB.Next(1 + numberB / 2, numberB - 1);
 
-        for (int i = 0; i < 3; i++)
+        
+        for (int i = 0; i < 2; i++)
         {
             Random randNumberC = new Random();
             Random randNumberD = new Random();
@@ -79,8 +80,9 @@ public class FieldScene001 : SceneBase
 
             _field[numberX1, numberY1].OnTileObject = new FuelEvent() { Name = $"Potion{i}" };
         }
+        
 
-        for (int j = 0; j < 2; j++)
+        for (int j = 0; j < 5; j++)
         {
             Random randNumberE = new Random();
             Random randNumberF = new Random();
@@ -88,15 +90,23 @@ public class FieldScene001 : SceneBase
             int numberY2 = randNumberF.Next(1, numberB - 1);
 
             Random randNumber = new Random();
-            int number1 = randNumber.Next(0, 10);
+            int number1 = randNumber.Next(0, 12);
 
-            if (number1 <= 4)
+            if (number1 < 3)
             {
-                _field[numberX2, numberY2].OnTileObject = new RandomEvent() { Name = "Random01" };
+                _field[numberX2, numberY2].OnTileObject = new RandomEvent() { Name = $"Random{j}" };
+            }
+            else if (number1 < 6)
+            {
+                _field[numberX2, numberY2].OnTileObject = new FuelEvent() { Name = $"Potion{j}" };
+            }
+            else if(number1 < 9)
+            {
+                _field[numberX2, numberY2].OnTileObject = new RepairEvent() { Name = $"Repair{j}" };
             }
             else
             {
-                _field[numberX2, numberY2].OnTileObject = new RepairEvent() { Name = "Repair01" };
+                _field[numberX2, numberY2].OnTileObject = new GoldEvent() { Name = $"Gold{j}" };
             }
         }
         
